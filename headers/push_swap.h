@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <jna@student.42.fr>                   +#+  +:+       +#+        */
+/*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 13:35:26 by root              #+#    #+#             */
-/*   Updated: 2021/05/26 13:39:06 by root             ###   ########.fr       */
+/*   Updated: 2021/05/27 03:28:33 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,31 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdbool.h>
+# include <limits.h>
+# include "../libft/libft.h"
 
 typedef struct	s_stack
 {
-	int	*a;
-	int	*b;
-}		t_statck
+	int		*list;
+	int		top;
+	int		size;
+}				t_stack;
+
+/*
+**		codes/
+*/
+void			valid_arg(int argc, char **argv);
+t_stack			push_value(int size, char **src);
+t_stack			init_stack(int size);
+
+/*
+**		codes/error/
+*/
+void			error_msg();
+
+/*
+**		codes/instructions/
+*/
 
 #endif
