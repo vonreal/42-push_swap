@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 13:35:26 by root              #+#    #+#             */
-/*   Updated: 2021/05/27 04:08:03 by jna              ###   ########.fr       */
+/*   Updated: 2021/05/27 05:12:34 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,10 @@ void			error_msg();
 /*
 **		codes/instructions/
 */
+
+/*
+**		codes/utils/
+*/
+int				get_sign(char c);
 
 #endif

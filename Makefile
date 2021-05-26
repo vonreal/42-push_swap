@@ -6,7 +6,7 @@
 #    By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/26 13:18:14 by root              #+#    #+#              #
-#    Updated: 2021/05/27 02:53:30 by jna              ###   ########.fr        #
+#    Updated: 2021/05/27 05:10:04 by jna              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ CC		= gcc -Wall -Wextra -Werror
 SRCS	=	./codes/main.c				\
 			./codes/valid_arg.c			\
 			./codes/push_value.c		\
+			./codes/utils/get_sign.c	\
 			./codes/error/error_msg.c	\
 
 INCLUDE	=	./headers

@@ -6,11 +6,15 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 02:11:10 by jna               #+#    #+#             */
-/*   Updated: 2021/05/27 04:08:14 by jna              ###   ########.fr       */
+/*   Updated: 2021/05/27 05:16:43 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*	Document requirment: The stack a formatted as a list of integers.
+**		1. The first argument should be at the top of the stack.
+*/
 
 static void	*allocate(int size, int length)
 {

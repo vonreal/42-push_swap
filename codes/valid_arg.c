@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 23:16:04 by jna               #+#    #+#             */
-/*   Updated: 2021/05/27 04:07:22 by jna              ###   ########.fr       */
+/*   Updated: 2021/05/27 05:20:08 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 **		1. Program quit errors.
 **			[1] Segmentation fault, bus error, double free etc
 **		2. Display "Error\n" on the standard error.
-**			[1]	Aren't integers
+**			[1] Aren't integers
 **			[2] Bigger than an integer
 **			[3] Duplicates.
 */
@@ -50,6 +50,11 @@ static bool	is_duplicate(char *src, char **target)
 	i = 0;
 	while (target[i])
 	{
+		if (target[i][0] == '+' || src[0] == '+')
+		{
+			target[i]++;
+			src++;
+		}
 		if (is_equal(target[i], src))
 			dup++;
 		if (dup > 1)
@@ -69,15 +74,15 @@ static bool	is_range(int min, int max, long long num)
 static bool	is_integer(char *str)
 {
 	long long	num;
-	int			minus;
+	int			sign;
 	int			i;
 
 	num = 0;
-	minus = 1;
+	sign = 1;
 	i = 0;
-	if (str[0] == '-')
+	if (get_sign(str[0]) != 0)
 	{
-		minus *= -1;
+		sign = get_sign(str[0]);
 		i++;
 	}
 	while (str[i])
@@ -88,7 +93,7 @@ static bool	is_integer(char *str)
 			num = (num * 10) + str[i] - '0';
 		i++;
 	}
-	if (!is_range(INT_MIN, INT_MAX, num * minus))
+	if (!is_range(INT_MIN, INT_MAX, num * sign))
 		return (false);
 	return (true);
 }
