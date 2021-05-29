@@ -6,7 +6,7 @@
 /*   By: jna </var/mail/root>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 13:22:38 by jna               #+#    #+#             */
-/*   Updated: 2021/05/27 13:32:28 by jna              ###   ########.fr       */
+/*   Updated: 2021/05/29 06:58:56 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void		pa(t_stack *a, t_stack *b)
 	int	data;
 
 	if (is_empty(b))
-		break ;
+		return ;
 	else
 	{
 		data = pop(b);
@@ -55,7 +55,7 @@ void		pb(t_stack *b, t_stack *a)
 	int	data;
 
 	if (is_empty(a))
-		break ;
+		return ;
 	else
 	{
 		data = pop(a);

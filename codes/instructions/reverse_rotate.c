@@ -6,16 +6,11 @@
 /*   By: jna </var/mail/root>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 13:57:01 by jna               #+#    #+#             */
-/*   Updated: 2021/05/27 14:03:39 by jna              ###   ########.fr       */
+/*   Updated: 2021/05/29 07:46:33 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int	count_elements(t_stack *stack)
-{
-	return (stack->top + 1);
-}
 
 static void	reverse_rotate(t_stack *stack)
 {
@@ -28,7 +23,7 @@ static void	reverse_rotate(t_stack *stack)
 	{
 		i = 0;
 		temp = stack->list[0];
-		while (i < stack->size - 1)
+		while (i < stack->top)
 		{
 			stack->list[i] = stack->list[i + 1];
 			i++;
@@ -51,7 +46,7 @@ void		rrb(t_stack *b)
 
 void		rrr(t_stack *a, t_stack *b)
 {
-	rra(a);
-	rrb(b);
+	reverse_rotate(a);
+	reverse_rotate(b);
 	write(STDOUT_FILENO, "rrr\n", 4);
 }

@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 02:11:10 by jna               #+#    #+#             */
-/*   Updated: 2021/05/27 05:16:43 by jna              ###   ########.fr       */
+/*   Updated: 2021/05/29 07:10:08 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,16 @@ t_stack		push_value(int size, char **src)
 {
 	t_stack	stack;
 	int		i;
+	int		j;
 
 	stack = init_stack(size);
 	i = 0;
+	j = stack.size - 1;
 	while (src[i])
 	{
-		stack.list[i] = ft_atoi(src[i]);
+		stack.list[j] = ft_atoi(src[i]);
 		i++;
+		j--;
 	}
 	stack.top = i - 1;
 	return (stack);

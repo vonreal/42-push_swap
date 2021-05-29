@@ -6,19 +6,11 @@
 /*   By: jna </var/mail/root>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 13:03:56 by jna               #+#    #+#             */
-/*   Updated: 2021/05/27 13:22:33 by jna              ###   ########.fr       */
+/*   Updated: 2021/05/29 07:46:10 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int	count_elements(t_stack *stack)
-{
-	int	count;
-
-	count = stack->top + 1;
-	return (count);
-}
 
 static void	swap(t_stack *stack)
 {
@@ -57,9 +49,9 @@ void		sb(t_stack *b)
 
 void		ss(t_stack *a, t_stack *b)
 {
-	sa(a);
-	sb(b);
+	swap(a);
+	swap(b);
 	/* TODO: If sa and sb not work. How deal ss?
-	** write(STDOUT_FILENO, "ss\n", 3);
 	*/
+       	write(STDOUT_FILENO, "ss\n", 3);
 }

@@ -6,18 +6,11 @@
 /*   By: jna </var/mail/root>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 13:35:50 by jna               #+#    #+#             */
-/*   Updated: 2021/05/27 13:55:22 by jna              ###   ########.fr       */
+/*   Updated: 2021/05/29 07:45:14 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static void	is_empty(t_stack *stack)
-{
-	if (stack->top == -1)
-		return (true);
-	return (false);
-}
 
 static void	rotate(t_stack *stack)
 {
@@ -27,12 +20,12 @@ static void	rotate(t_stack *stack)
 	/* TODO: In common sense, an element below 1 does not rotate.
 	 * 	 I'm deal only no element. +element count 1. Using count_elemets()
 	 */
-	if (is_empty(stack))
+	if (count_elements(stack) < 2)
 		return ;
 	else
 	{
 		temp = stack->list[stack->top];
-		i = stack->top - 1;
+		i = stack->top;
 		while (i > 0)
 		{
 			stack->list[i] = stack->list[i - 1];
@@ -56,6 +49,7 @@ void		rb(t_stack *b)
 
 void		rr(t_stack *a, t_stack *b)
 {
-	ra(a);
-	rb(b);
+	rotate(a);
+	rotate(b);
+	write(STDOUT_FILENO, "rr\n", 3);
 }

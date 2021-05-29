@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 13:35:26 by root              #+#    #+#             */
-/*   Updated: 2021/05/27 05:12:34 by jna              ###   ########.fr       */
+/*   Updated: 2021/05/29 06:48:15 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,23 @@ void			error_msg();
 /*
 **		codes/instructions/
 */
+void			sa(t_stack *a);
+void			sb(t_stack *b);
+void			ss(t_stack *a, t_stack *b);
+void			pa(t_stack *a, t_stack *b);
+void			pb(t_stack *b, t_stack *a);
+void			ra(t_stack *a);
+void			rb(t_stack *b);
+void			rr(t_stack *a, t_stack *b);
+void			rra(t_stack *a);
+void			rrb(t_stack *b);
+void			rrr(t_stack *a, t_stack *b);
 
 /*
 **		codes/utils/
 */
-int				get_sign(char c);
+int			get_sign(char c);
+int			count_elements(t_stack *stack);	
+void			stack(t_stack *a, t_stack *b);
 
 #endif
