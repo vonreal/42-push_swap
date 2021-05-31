@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 13:35:26 by root              #+#    #+#             */
-/*   Updated: 2021/05/29 06:48:15 by jna              ###   ########.fr       */
+/*   Updated: 2021/05/30 11:55:28 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 # include <stdbool.h>
 # include <limits.h>
 # include "../libft/libft.h"
+
+# define TOP		1
+# define END		0
+# define NOTHING	-1
 
 typedef struct	s_stack
 {
@@ -32,6 +36,7 @@ typedef struct	s_stack
 void			valid_arg(int argc, char **argv);
 t_stack			push_value(int size, char **src);
 t_stack			init_stack(int size);
+void			push_swap(t_stack *a, t_stack *b);
 
 /*
 **		codes/error/
