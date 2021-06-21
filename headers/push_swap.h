@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 13:35:26 by root              #+#    #+#             */
-/*   Updated: 2021/05/30 11:55:28 by jna              ###   ########.fr       */
+/*   Updated: 2021/06/21 14:29:45 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void			rrr(t_stack *a, t_stack *b);
 /*
 **		codes/utils/
 */
-int			get_sign(char c);
-int			count_elements(t_stack *stack);	
+int				get_sign(char c);
+int				count_elements(t_stack *stack);	
 void			stack(t_stack *a, t_stack *b);
 
 #endif

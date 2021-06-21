@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jna </var/mail/root>                       +#+  +:+       +#+        */
+/*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 13:03:56 by jna               #+#    #+#             */
-/*   Updated: 2021/05/29 07:46:10 by jna              ###   ########.fr       */
+/*   Updated: 2021/06/21 15:57:32 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,12 @@ void		sb(t_stack *b)
 
 void		ss(t_stack *a, t_stack *b)
 {
-	swap(a);
-	swap(b);
-	/* TODO: If sa and sb not work. How deal ss?
-	*/
-       	write(STDOUT_FILENO, "ss\n", 3);
+	if (count_elements(a) < 2 && count_elements(b) < 2)
+		return ;
+	else
+	{
+		swap(a);
+		swap(b);
+		write(STDOUT_FILENO, "ss\n", 3);
+	}
 }
