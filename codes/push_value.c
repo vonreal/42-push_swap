@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 02:11:10 by jna               #+#    #+#             */
-/*   Updated: 2021/05/29 07:10:08 by jna              ###   ########.fr       */
+/*   Updated: 2021/06/23 15:28:29 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 /*	Document requirment: The stack a formatted as a list of integers.
 **		1. The first argument should be at the top of the stack.
+**	Caution
+**		1. list of t_stack is use to malloc function.
+**		2. Not use t_stack must be free to member of list.
 */
 
-static void	*allocate(int size, int length)
+void	*allocate(int size, int length)
 {
 	void		*temp;
 

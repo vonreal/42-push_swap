@@ -3,183 +3,95 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jna </var/mail/root>                       +#+  +:+       +#+        */
+/*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/30 10:49:31 by jna               #+#    #+#             */
-/*   Updated: 2021/05/31 13:12:09 by jna              ###   ########.fr       */
+/*   Created: 2021/06/23 16:21:29 by jna               #+#    #+#             */
+/*   Updated: 2021/06/24 15:25:02 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-static int	where_index(int big_idx, int total)
+static void	in_a_stack(t_stack *a, t_stack *b, int *datas, int mid)
 {
-	/* I think if total_size / 2
-	 *  if total_size - big-idx(corrent idx)
-	 *  bigger than total_size / 2 rra();
-	 *  smaller than total_size / 2 ra();
-	 *  if big_idx == 0 Nothing.
-	 */
-	int	mid;
+	int		i;
+	int		count;
+	int		pivot;
 
-	mid = (int)(total / 2);
-	if (big_idx == 0)
-		return (NOTHING);
-	if (big_idx < mid)
-		return (END);
-	if (big_idx >= mid)
-		return (TOP);
-	return (0);
-}
-
-static int	get_index_of_big_num(t_stack *stack)
-{
-	int	big;
-	int	i;
-
-	big = 0;
-	i = 1;
-	while (i <= stack->top)
-	{
-		if (stack->list[big] < stack->list[i])
-			big = i;
-		i++;
-	}
-	return (big);
-}
-
-static void	cmp_the_rest(t_stack *stack)
-{
-	int	first;
-	int	second;
-
-	first = stack->top;
-	second = stack->top - 1;
-	if (stack->list[first] > stack->list[second])
-			sa(stack);
-	else
+	if (is_aligned(a))
 		return ;
-}
-
-static void	if_argc_three(t_stack *stack)
-{
-	int	big_idx;
-	int	where_idx;
-
-	big_idx = get_index_of_big_num(stack);
-	where_idx = where_index(big_idx, stack->size);
-	if (where_idx == NOTHING)
-	{
-		cmp_the_rest(stack);
-		return ;
-	}
-	if (where_idx == TOP)
-		ra(stack);
-	else
-		rra(stack);
-	cmp_the_rest(stack);
-}
-
-static void	bottom_swap(t_stack *stack, int count)
-{
-	int	mid;
-	int	i;
-
-	mid = (int)(stack->size / 2);
-	i = count;
+	i = a->top;
 	count = 0;
-	while (i > mid)
+	pivot = datas[mid];
+	while (i > 0)
 	{
-		rra(stack);
-		sa(stack);
+		if (!is_aligned(a))
+		{
+			if (a->list[a->top] == pivot)
+				sa(a);
+		}
+		if (a->list[a->top] < pivot)
+		{
+			pb(b, a);
+			count++;
+		}
+		else if (a->list[a->top] > pivot)
+			ra(a);
 		i--;
-		count++;
 	}
-	ra(stack);
-	ra(stack);
-	while (count > 1)
+	while (count > 0)
 	{
-		ra(stack);
+		pa(a, b);
 		count--;
 	}
 }
 
-static void	top_swap(t_stack *stack, int count)
+static void	in_b_stack(t_stack *a, t_stack *b, int pivot)
 {
-	int	i;
+	int			i;
+	int			count;
 
-	i = count;
-	count = 0;
-	while (i > 1)
+	if (is_descending_order(b))
+		return ;
+	i = b->top;
+	count= 0;
+	while (i > 0)
 	{
-		sa(stack);
-		ra(stack);
+		if (!is_descending_order(b))
+		{
+			if (b->list[b->top] == pivot)
+				sb(b);
+		}
+		if (b->list[b->top] > pivot)
+		{
+			pa(a, b);
+			count++;
+		}
+		else if (b->list[b->top] < pivot)
+			rb(b);
 		i--;
-		count++;
 	}
-	sa(stack);
-	rra(stack);
-	while (count > 1)
+	while (count > 0)
 	{
-		rra(stack);
+		pb(b, a);
 		count--;
 	}
 }
 
-static void	swap(int count,	t_stack *a)
+void		set_infos(int midian, t_info *infos)
 {
-	int	mid;
+	infos->midian += midian;
+	infos->pivot = infos->aligned[infos->midian];
+}
 
-	mid = (int)(a->size / 2);
-	if (count == 0)
+void		push_swap(t_stack *a, t_stack *b, t_info *infos)
+{
+	if (is_aligned(a))
 		return ;
-	else if (count == 1)
-		sa(a);
-	else if (count == a->top )
-		ra(a);
-	else if (1 < count && count <= mid)
-		top_swap(a, count);
-	else if (mid < count && count < a->size)
-		bottom_swap(a, count);
-}
-
-static int	get_count(t_stack *stack)
-{
-	int	count;
-	int	target;
-	int	i;
-
-	count = 0;
-	target = stack->list[stack->top];
-	i = stack->top - 1;
-	while (i >= 0)
-	{
-		if (target < stack->list[i])
-			return (count);
-		i--;
-		count++;
-	}
-	return (count);
-}
-
-static void	if_argc_five(t_stack *a, t_stack *b)
-{
-	pb(b, a);
-	pb(b, a);
-	if_argc_three(a);
-	pa(a, b);
-	swap(get_count(a), a);
-	pa(a, b);
-	swap(get_count(a), a);
-}
-
-void		push_swap(t_stack *a, t_stack *b)
-{
-	if (a->size == 3)
-		if_argc_three(a);
-	else if (a->size == 5)
-		if_argc_five(a, b);
-	if (b->size == a->size)	//temp(gcc avoid)
-		return ;
+	infos->midian = 0;
+	set_infos(a->top / 2, infos);
+	quick_sort(a, b, infos);
+	// in_a_stack(a, b, datas, mid + mid / 2);
+	// in_b_stack(a, b, datas[mid/2]);
 }

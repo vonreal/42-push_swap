@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 13:35:26 by root              #+#    #+#             */
-/*   Updated: 2021/06/21 14:29:45 by jna              ###   ########.fr       */
+/*   Updated: 2021/06/24 20:49:27 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@
 # include <limits.h>
 # include "../libft/libft.h"
 
-# define TOP		1
-# define END		0
-# define NOTHING	-1
+# include <stdio.h>
 
 typedef struct	s_stack
 {
@@ -30,13 +28,30 @@ typedef struct	s_stack
 	int		size;
 }				t_stack;
 
+typedef struct	s_info
+{
+	int		midian;
+	int		pivot;
+	int		*aligned;
+}				t_info;
+
+
+void		print_stack(t_stack a, t_stack b);
+void	sort_a_stack(t_stack *a, t_stack *b, t_info *infos, int cnt);
 /*
 **		codes/
 */
 void			valid_arg(int argc, char **argv);
 t_stack			push_value(int size, char **src);
+void			*allocate(int size, int length);
 t_stack			init_stack(int size);
-void			push_swap(t_stack *a, t_stack *b);
+void			push_swap(t_stack *a, t_stack *b, t_info *infos);
+void			set_infos(int midian, t_info *infos);
+void			quick_sort(t_stack *a, t_stack *b, t_info *infos);
+bool			is_aligned(t_stack *stack);
+bool			is_descending_order(t_stack *stack);
+void			quick_sort_rest(t_stack *a, t_stack *b, t_info *infos, int cnt);
+void		quick_sort_rest_b(t_stack *a, t_stack *b, t_info *infos, int cnt);
 
 /*
 **		codes/error/
@@ -62,7 +77,8 @@ void			rrr(t_stack *a, t_stack *b);
 **		codes/utils/
 */
 int				get_sign(char c);
-int				count_elements(t_stack *stack);	
-void			stack(t_stack *a, t_stack *b);
+int				count_elements(t_stack *stack);
+void			free_and_null_stack(t_stack *stack);
+int				*bubble_sort(t_stack *stack);
 
 #endif

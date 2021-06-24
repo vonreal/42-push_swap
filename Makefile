@@ -6,7 +6,7 @@
 #    By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/26 13:18:14 by root              #+#    #+#              #
-#    Updated: 2021/05/31 12:44:31 by jna              ###   ########.fr        #
+#    Updated: 2021/06/24 18:05:33 by jna              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,18 +14,22 @@ NAME	= push_swap
 
 CC		= gcc
 
-SRCS	=	./codes/main.c					\
-			./codes/valid_arg.c			\
-			./codes/push_value.c			\
-			./codes/stack.c				\
-			./codes/push_swap.c			\
-			./codes/utils/get_sign.c		\
-			./codes/utils/count_elements.c		\
-			./codes/instructions/swap.c		\
-			./codes/instructions/push.c		\
-			./codes/instructions/rotate.c		\
+SRCS	=	./codes/main.c							\
+			./codes/valid_arg.c						\
+			./codes/push_value.c					\
+			./codes/push_swap.c						\
+			./codes/quick_sort.c					\
+			./codes/quick_sort_rest.c				\
+			./codes/order.c							\
+			./codes/utils/get_sign.c				\
+			./codes/utils/count_elements.c			\
+			./codes/utils/free_and_null.c			\
+			./codes/utils/bubble_sort.c				\
+			./codes/instructions/swap.c				\
+			./codes/instructions/push.c				\
+			./codes/instructions/rotate.c			\
 			./codes/instructions/reverse_rotate.c	\
-			./codes/error/error_msg.c		\
+			./codes/error/error_msg.c				\
 
 INCLUDE	=	./headers
 
