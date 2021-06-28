@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 13:35:26 by root              #+#    #+#             */
-/*   Updated: 2021/06/24 20:49:27 by jna              ###   ########.fr       */
+/*   Updated: 2021/06/28 16:19:00 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ typedef struct	s_info
 }				t_info;
 
 
-void		print_stack(t_stack a, t_stack b);
-void	sort_a_stack(t_stack *a, t_stack *b, t_info *infos, int cnt);
+void			print_stack(t_stack a, t_stack b);
+void			sort_a_stack(t_stack *a, t_stack *b, t_info *infos, int cnt);
+
 /*
 **		codes/
 */
@@ -46,12 +47,17 @@ t_stack			push_value(int size, char **src);
 void			*allocate(int size, int length);
 t_stack			init_stack(int size);
 void			push_swap(t_stack *a, t_stack *b, t_info *infos);
-void			set_infos(int midian, t_info *infos);
-void			quick_sort(t_stack *a, t_stack *b, t_info *infos);
-bool			is_aligned(t_stack *stack);
-bool			is_descending_order(t_stack *stack);
-void			quick_sort_rest(t_stack *a, t_stack *b, t_info *infos, int cnt);
-void		quick_sort_rest_b(t_stack *a, t_stack *b, t_info *infos, int cnt);
+void			sort_three(t_stack *stack);
+
+/*
+**		temp/
+*/
+// void			set_infos(int midian, t_info *infos);
+// void			quick_sort(t_stack *a, t_stack *b, t_info *infos);
+// bool			is_aligned(t_stack *stack);
+// bool			is_descending_order(t_stack *stack);
+// void			quick_sort_rest(t_stack *a, t_stack *b, t_info *infos, int cnt);
+// void			quick_sort_rest_b(t_stack *a, t_stack *b, t_info *infos, int cnt);
 
 /*
 **		codes/error/

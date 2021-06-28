@@ -1,0 +1,19 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+          "type": "default",
+          "project": "./push_swap",
+          "name": "hello.exe"
+        },
+        {
+          "type": "default",
+          "project": "./push_swap",
+          "name": "hello.exe a1",
+          "args": [ "5 4 3 2 1 6 7 8 9 10 11 12" ]
+        }
+      ]
+}

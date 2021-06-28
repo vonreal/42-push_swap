@@ -6,7 +6,7 @@
 #    By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/26 13:18:14 by root              #+#    #+#              #
-#    Updated: 2021/06/24 18:05:33 by jna              ###   ########.fr        #
+#    Updated: 2021/06/28 16:19:15 by jna              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,7 @@ SRCS	=	./codes/main.c							\
 			./codes/valid_arg.c						\
 			./codes/push_value.c					\
 			./codes/push_swap.c						\
-			./codes/quick_sort.c					\
-			./codes/quick_sort_rest.c				\
-			./codes/order.c							\
+			./codes/sort_three.c					\
 			./codes/utils/get_sign.c				\
 			./codes/utils/count_elements.c			\
 			./codes/utils/free_and_null.c			\
