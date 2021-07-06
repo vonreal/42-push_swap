@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   upgrade_push_swap.c                                :+:      :+:    :+:   */
+/*   fix_push_swap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 19:53:42 by jna               #+#    #+#             */
-/*   Updated: 2021/07/06 10:27:14 by jna              ###   ########.fr       */
+/*   Updated: 2021/07/06 11:35:37 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		get_max_num_idx(t_stack *stack, t_info *infos, int size)
 
 	i = stack->top - 1;
 	max = stack->top;
-	while (size > 0)
+	while (size > 1)
 	{
 		if (stack->list[max] < stack->list[i])
 			max = i;
@@ -68,7 +68,7 @@ int		get_min_num_idx(t_stack *stack, t_info *infos, int size)
 
 	i = stack->top - 1;
 	min = stack->top;
-	while (size > 0)
+	while (size > 1)
 	{
 		if (stack->list[min] > stack->list[i])
 			min = i;
@@ -77,14 +77,6 @@ int		get_min_num_idx(t_stack *stack, t_info *infos, int size)
 	}
 	min = get_idx_aligned(stack->list[min], infos);
 	return (min);
-}
-
-void	set_calls(t_call *calls)
-{
-	calls->ra = 0;
-	calls->rb = 0;
-	calls->pa = 0;
-	calls->pb = 0;
 }
 
 void	set_pivot(t_stack *stack, t_info *infos, int size)
@@ -96,84 +88,94 @@ void	set_pivot(t_stack *stack, t_info *infos, int size)
 	min = get_min_num_idx(stack, infos, size);
 	infos->midian = (max + min) / 2;
 	infos->pivot = infos->aligned[infos->midian];
-	set_calls(&infos->calls);
 }
 
-void	b_to_a(t_stack *a, t_stack *b, t_info *infos, int size, int calls_pa)
+void	a_to_b_rra(t_stack *a, t_stack *b, t_info *infos, int size)
 {
 	int		i;
-	
+	int		calls_ra;
+
 	i = 0;
+	calls_ra = 0;
 	if (size == 1)
+		return ;
+	set_pivot(a, infos, size);
+	while (i < size)
+	{
+		if (a->list[a->top] > infos->pivot)
+		{
+			ra(a);
+			calls_ra++;
+		}
+		else
+			pb(b, a);
+		i++;
+	}
+	i = 0;
+	while (i < calls_ra)
+	{
+		rra(a);
+		i++;
+	}
+	a_to_b_rra(a, b, infos, calls_ra);
+}
+
+void	b_to_a(t_stack *a, t_stack *b, t_info *infos)
+{
+	int		i;
+	int		calls_pa;
+
+	i = 0;
+	calls_pa = 0;
+	if (b->top == 0)
 	{
 		pa(a, b);
 		return ;
 	}
-	set_pivot(b, infos, size);
-	while (i <= size)
+	set_pivot(b, infos, b->top + 1);
+	while (i < b->top + 1)
 	{
-		if (b->list[b->top] <= infos->pivot)
-		{
+		if (b->list[b->top] < infos->pivot)
 			rb(b);
-			infos->calls.rb++;
-		}
 		else
 		{
 			pa(a, b);
-			infos->calls.pa = calls_pa;
-			infos->calls.pa++;
+			calls_pa++;
 		}
 		i++;
 	}
-	i = 0;
-	while (i <= infos->calls.ra)
-	{
-		rra(a);
-		i++;
-	}
-	print_stack(*a, *b);
-	a_to_b(a, b, infos, infos->calls.pa, 0);
-	b_to_a(a, b, infos, infos->calls.pb, 0);
+	a_to_b_rra(a, b, infos, calls_pa);
+	b_to_a(a, b, infos);
 }
 
-void	a_to_b(t_stack *a, t_stack *b, t_info *infos, int size, int calls_pb)
+void	a_to_b(t_stack *a, t_stack *b, t_info *infos, int size)
 {
 	int		i;
+	int		calls_ra;
 
 	i = 0;
+	calls_ra = 0;
 	if (size == 1)
 		return ;
 	set_pivot(a, infos, size);
-	print_stack(*a, *b);
-	while (i <= size)
+	while (i < size)
 	{
-		if (a->list[a->top] >= infos->pivot)
+		if (a->list[a->top] > infos->pivot)
 		{
 			ra(a);
-			infos->calls.ra++;
+			calls_ra++;
 		}
 		else
-		{
 			pb(b, a);
-			infos->calls.pb = calls_pb;
-			infos->calls.pb++;
-		}
 		i++;
 	}
-	i = 0;
-	while (i <= infos->calls.ra)
-	{
-		rra(a);
-		i++;
-	}
-	print_stack(*a, *b);
-	a_to_b(a, b, infos, infos->calls.ra - 1, infos->calls.pb);
-	b_to_a(a, b, infos, infos->calls.pb, 0);
+	a_to_b(a, b, infos, calls_ra);
 }
 
 void	sort(t_stack *a, t_stack *b, t_info *infos)
 {
-	a_to_b(a, b, infos, a->top, 0);
+	a_to_b(a, b, infos, a->top + 1);
+	b_to_a(a, b, infos);
 }
 
 

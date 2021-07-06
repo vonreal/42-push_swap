@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 13:35:26 by root              #+#    #+#             */
-/*   Updated: 2021/07/05 15:14:29 by jna              ###   ########.fr       */
+/*   Updated: 2021/07/06 10:32:25 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,11 @@ typedef struct	s_stack
 	int		size;
 }				t_stack;
 
-typedef struct	s_call
-{
-	int		ra;
-	int		rb;
-	int		pa;
-	int		pb;
-}				t_call;
-
 typedef struct	s_info
 {
 	int		midian;
 	int		pivot;
 	int		*aligned;
-	t_call		calls;
 }				t_info;
 
 
@@ -57,6 +48,7 @@ void			*allocate(int size, int length);
 t_stack			init_stack(int size);
 void			push_swap(t_stack *a, t_stack *b, t_info *infos);
 void			sort_three(t_stack *stack);
+void			a_to_b(t_stack *a, t_stack *b, t_info *infos, int size);
 
 /*
 **		temp/
