@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 19:53:42 by jna               #+#    #+#             */
-/*   Updated: 2021/07/07 11:26:27 by jna              ###   ########.fr       */
+/*   Updated: 2021/07/07 15:51:39 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -332,6 +332,122 @@ void	b_to_a(t_stack *a, t_stack *b, t_info *infos, int action)
 	b_to_a(a, b, infos, action);
 }
 
+int	get_action_five_hun(t_stack *b)
+{
+	int		action;
+
+	action = b->size - b->top;
+	return (action);
+}
+
+void	action_four(t_stack *a, t_stack *b, t_info *infos)
+{
+	set_pivot(b, infos, 4);
+	divide_b(a, b, infos, 4);
+	sort_top_three_rest(a, b);
+}
+
+void	action_eight(t_stack *a, t_stack *b, t_info *infos)
+{
+	set_pivot(b, infos, 8);
+	divide_b(a, b, infos, 8);
+
+	sort_top_three_rest(a, b);
+	action_four(a, b, infos);
+}
+
+void	action_sixteen(t_stack *a, t_stack *b, t_info *infos)
+{
+	set_pivot(b, infos, 16);
+	divide_b(a, b, infos, 16);
+
+	sort_top_three_rest(a, b);
+	action_four(a, b, infos);
+	action_eight(a, b, infos);
+}
+
+void	action_thirty_one(t_stack *a, t_stack *b, t_info *infos)
+{
+	set_pivot(b, infos, 31);
+	divide_b(a, b, infos, 31);
+
+	action_four(a, b, infos);
+	action_eight(a, b, infos);
+	action_sixteen(a, b, infos);
+}
+
+void	action_thirty_two(t_stack *a, t_stack *b, t_info *infos)
+{
+	set_pivot(b, infos, 32);
+	divide_b(a, b, infos, 32);
+
+	sort_top_three_rest(a, b);
+	action_four(a, b, infos);
+	action_eight(a, b, infos);
+	action_sixteen(a, b, infos);
+}
+
+void	action_sixty_three(t_stack *a, t_stack *b, t_info *infos)
+{
+	set_pivot(b, infos , 63);
+	divide_b(a, b, infos, 63);
+
+	action_four(a, b, infos);
+	action_eight(a, b, infos);
+	action_sixteen(a, b, infos);
+	action_thirty_two(a, b, infos);
+}
+
+void	action_one_hun_twnety_five(t_stack *a, t_stack *b, t_info *infos)
+{
+	set_pivot(b, infos, 125);
+	divide_b(a, b, infos, 125);
+
+	action_four(a, b, infos);
+	action_eight(a, b, infos);
+	action_sixteen(a, b, infos);
+	action_thirty_one(a, b, infos);
+	action_sixty_three(a, b, infos);
+}
+
+void	action_two_hun_fifty_one(t_stack *a, t_stack *b, t_info *infos)
+{
+	set_pivot(b, infos, 250);
+	divide_b(a, b, infos, 250);
+
+	action_four(a, b, infos);
+	action_eight(a, b, infos);
+	action_sixteen(a, b, infos);
+	action_thirty_one(a, b, infos);
+	action_sixty_three(a, b, infos);
+	action_one_hun_twnety_five(a, b, infos);
+}
+
+void	b_to_a_five_hun(t_stack *a, t_stack *b, t_info *infos, int action)
+{
+	int		i;
+	
+	i = 0;
+	action = get_action_five_hun(b);
+	if (b->top <= 2)
+		return ;
+	if (action == 4)
+		action_four(a, b, infos);
+	else if (action == 8)
+		action_eight(a, b, infos);
+	else if (action == 16)
+		action_sixteen(a, b, infos);
+	else if (action == 32) // 31
+		action_thirty_one(a, b, infos);
+	else if (action == 63)
+		action_sixty_three(a, b, infos);
+	else if (action == 126) // 125
+		action_one_hun_twnety_five(a, b, infos);
+	else if (action == 251) // 250
+		action_two_hun_fifty_one(a, b, infos);
+	b_to_a_five_hun(a, b, infos, action);
+}
+
 void	a_to_b(t_stack *a, t_stack *b, t_info *infos, int calls_pb)
 {
 	int		i;
@@ -362,14 +478,22 @@ void	a_to_b(t_stack *a, t_stack *b, t_info *infos, int calls_pb)
 		}
 		i--;
 	}
-	print_stack(*a, *b);
+	//print_stack(*a, *b);
 	a_to_b(a, b, infos, calls_pb);
 }
 
 void	sort(t_stack *a, t_stack *b, t_info *infos)
 {
-	a_to_b(a, b, infos, 0);
-	b_to_a(a, b, infos, 3);
+	if (a->size == 100)
+	{
+		a_to_b(a, b, infos, 0);
+		b_to_a(a, b, infos, 3);
+	}
+	else if (a->size == 500)
+	{
+		a_to_b(a, b, infos, 0);
+		b_to_a_five_hun(a, b, infos, 4);
+	}
 }
 
 
