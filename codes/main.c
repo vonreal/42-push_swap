@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 13:25:56 by root              #+#    #+#             */
-/*   Updated: 2021/07/06 11:31:08 by jna              ###   ########.fr       */
+/*   Updated: 2021/07/07 11:30:43 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int			main(int argc, char **argv)
 	b = init_stack(argc - 1);
 	infos.aligned = bubble_sort(&a);
 	
-	//print_stack(a, b);
+//	print_stack(a, b);
 	// print_datas(datas, &a);
 	push_swap(&a, &b, &infos);
 	print_stack(a, b);

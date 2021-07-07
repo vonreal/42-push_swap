@@ -6,7 +6,7 @@
 #    By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/26 13:18:14 by root              #+#    #+#              #
-#    Updated: 2021/07/06 10:27:50 by jna              ###   ########.fr        #
+#    Updated: 2021/07/07 09:02:54 by jna              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CC		= gcc
 SRCS	=	./codes/main.c							\
 			./codes/valid_arg.c						\
 			./codes/push_value.c					\
-			./codes/fix_push_swap.c						\
+			./codes/push_swap.c						\
 			./codes/sort_three.c					\
 			./codes/utils/get_sign.c				\
 			./codes/utils/count_elements.c			\

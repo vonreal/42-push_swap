@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 19:53:42 by jna               #+#    #+#             */
-/*   Updated: 2021/06/28 18:29:41 by jna              ###   ########.fr       */
+/*   Updated: 2021/07/07 11:26:27 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,166 +43,345 @@ int		get_idx_aligned(int target, t_info *infos)
 	return (i);
 }
 
-int		get_max_num_idx(t_stack *stack, t_info *infos, int end)
+int		get_max_num_idx(t_stack *stack, t_info *infos, int size)
 {
 	int		i;
 	int		max;
 
 	i = stack->top - 1;
 	max = stack->top;
-	while (i >= end)
+	while (size > 1)
 	{
 		if (stack->list[max] < stack->list[i])
 			max = i;
+		size--;
 		i--;
 	}
 	max = get_idx_aligned(stack->list[max], infos);
 	return (max);
 }
 
-int		get_min_num_idx(t_stack *stack, t_info *infos, int end)
+int		get_min_num_idx(t_stack *stack, t_info *infos, int size)
 {
 	int		i;
 	int		min;
 
 	i = stack->top - 1;
 	min = stack->top;
-	while (i >= end)
+	while (size > 1)
 	{
 		if (stack->list[min] > stack->list[i])
 			min = i;
 		i--;
+		size--;
 	}
 	min = get_idx_aligned(stack->list[min], infos);
 	return (min);
 }
 
-void	set_pivot(t_stack *stack, t_info *infos, int end)
+void	set_pivot(t_stack *stack, t_info *infos, int size)
 {
 	int		max;
 	int		min;
 
-	max = get_max_num_idx(stack, infos, end);
-	min = get_min_num_idx(stack, infos, end);
+	max = get_max_num_idx(stack, infos, size);
+	min = get_min_num_idx(stack, infos, size);
 	infos->midian = (max + min) / 2;
 	infos->pivot = infos->aligned[infos->midian];
 }
 
-int		find_aligned(t_stack *stack, t_info *infos)
+bool	is_rest_bigger(t_stack *a, int pivot)
 {
 	int		i;
-	int		idx;
 
-	// 1. stack->list에서 infos->aligned[0] 를 찾는다.
-	i = stack->top;
-	while (i >= 0)
-	{
-		if (stack->list[i] == infos->aligned[0])
-			break ;
-		i--;
-	}
-	idx = i;
-	i = 0;
-	// 2. 해당 인덱스부터 stack->list[0]일 때까지 infos->aligned와 같은 값으로 정렬되었는지 판단한다.
-	while (idx >= 0)
-	{
-		if (!(stack->list[idx] == infos->aligned[i]))
-			return (0);
-		idx--;
-		i++;
-	}
-	// 3. 만약 정렬되었다면 해당 인덱스 전까지 피봇을 정하고 연산을 진행한다.
-	return (i);
-}
-
-void	divide_a(t_stack *a, t_stack *b, t_info *infos)
-{
-	int		i;
-	int		end;
-
-	end = find_aligned(a, infos);
-	set_pivot(a, infos, end);
 	i = a->top;
-	while (i >= end)
-	{
-		if (a->list[a->top] <= infos->pivot)
-			pb(b, a);
-		else if (a->list[a->top] > infos->pivot)
-			ra(a);
-		i--;
-	}
-	if (is_aligned(a, infos->aligned))
-		return ;
 	while (i >= 0)
 	{
-		ra(a);
+		if (a->list[i] < pivot)
+			return (false);
 		i--;
 	}
+	return (true);
 }
 
-void	sort_descending(t_stack *stack)
+void	sort_top_three_rest(t_stack *a, t_stack *b)
+{
+	if (b->list[b->top] < b->list[b->top - 1])
+		sb(b);
+	pa(a, b);
+	pa(a, b);
+}
+
+void	sort_top_three_rest_a(t_stack *a, t_stack *b)
+{
+	if (a->list[a->top] > a->list[a->top - 1])
+		sa(a);
+}
+
+void	sort_top_three(t_stack *a, t_stack *b)
 {
 	int		i;
+	int		j;
 	int		max;
 
-	// 1. 가장 큰 숫자의 위치를 찾는다.
-	i = stack->top - 1;
-	max = stack->top;
-	while (i >= 0)
+	i = b->top - 1;
+	max = b->top;
+	while (i >= b->top - 2)
 	{
-		if (stack->list[max] < stack->list[i])
+		if (b->list[max] < b->list[i])
 			max = i;
 		i--;
 	}
-	// 2. 가장 큰 숫자의 위치를 맨 아래로 옮겨준다.
-	if (max == stack->top)
-		rb(stack);
-	if (max == stack->top - 1)
-		rrb(stack);
-	// 3. 나머지를 연산해준다.
-	if (stack->list[stack->top] > stack->list[stack->top - 1])
-		sb(stack);
+	if (max == b->top)
+	{
+		pa(a, b);
+		sort_top_three_rest(a, b);
+	}
+	else if (max == b->top - 1)
+	{
+		rb(b);
+		pa(a, b);
+		rrb(b);
+		sort_top_three_rest(a, b);
+	}
+	else if (max == b->top - 2)
+	{
+		rb(b);
+		rb(b);
+		pa(a, b);
+		rrb(b);
+		rrb(b);
+		sort_top_three_rest(a, b);
+	}
+
+}
+
+void	sort_top_three_a(t_stack *a, t_stack *b)
+{
+	int		i;
+	int		j;
+	int		max;
+
+	i = a->top - 1;
+	max = a->top;
+	while (i >= a->top - 2)
+	{
+		if (a->list[max] < a->list[i])
+			max = i;
+		i--;
+	}
+	if (max == a->top)
+	{
+		sa(a);
+		ra(a);
+		sa(a);
+		rra(a);
+		sort_top_three_rest_a(a, b);
+	}
+	else if (max == a->top - 1)
+	{
+		ra(a);
+		sa(a);
+		rra(a);
+		sort_top_three_rest_a(a, b);
+
+	}
+	else if (max == a->top - 2)
+		sort_top_three_rest_a(a, b);
+}
+
+int	get_action(t_stack *b)
+{
+	if (b->top == 96)
+		return (3);
+	if (b->top == 93)
+		return (6);
+	if (b->top == 87)
+		return (13);
+	if (b->top == 74)
+		return (25);
+	if (b->top == 49)
+		return (50);
+}
+
+void	sort_top_a(t_stack *a, t_stack *b, t_info *infos, int size)
+{
+	int		i;
+	int		calls_ra;
+	
+	i = 0;
+	calls_ra = 0;
+	set_pivot(a, infos, size);
+	if (size <= 3)
+	{
+		if (size == 3)
+			sort_top_three_a(a, b);
+		else if (size == 2)
+			sort_top_three_rest_a(a, b);
+		return ;
+	}
+	while (i < size)
+	{
+		if (a->list[a->top] <= infos->pivot)
+			pb(b, a);
+		else
+		{
+			ra(a);
+			calls_ra++;
+		}
+		i++;
+	}
+	i = calls_ra;
+	while (calls_ra > 0)
+	{
+		rra(a);
+		calls_ra--;
+	}
+	sort_top_a(a, b, infos, i);
+}
+
+void	divide_b(t_stack *a, t_stack *b, t_info *infos, int size)
+{
+	int		i;
+	int		calls_rb;
+	int		calls_pa;
+
+	i = 0;
+	calls_pa = 0;
+	calls_rb = 0;
+	while (i < size)
+	{
+		if (b->list[b->top] > infos->pivot)
+		{
+			pa(a, b);
+			calls_pa++;
+		}
+		else
+		{
+			rb(b);
+			calls_rb++;
+		}
+		i++;
+	}
+	while (calls_rb > 0)
+	{
+		rrb(b);
+		calls_rb--;
+	}
+	sort_top_a(a, b, infos, calls_pa);
+}
+
+void	action_six(t_stack *a, t_stack *b, t_info *infos)
+{
+	set_pivot(b, infos, 6);
+	divide_b(a, b, infos, 6);
+	sort_top_three(a, b);
+}
+
+void	action_thirteen(t_stack *a, t_stack *b, t_info *infos)
+{
+	set_pivot(b, infos, 13);
+	divide_b(a, b, infos, 13);
+	sort_top_three(a, b);
+
+	set_pivot(b, infos, 7);
+	divide_b(a, b, infos, 7);
+
+	set_pivot(b, infos, 4);
+	divide_b(a, b, infos, 4);
+	sort_top_three_rest(a, b);
+}
+
+void	action_twentyfive(t_stack *a, t_stack *b, t_info *infos)
+{
+	set_pivot(b, infos, 25);
+	divide_b(a, b, infos, 25);
+
+	sort_top_three(a, b);
+	action_six(a, b, infos);
+	action_thirteen(a, b, infos);
+}
+
+void	b_to_a(t_stack *a, t_stack *b, t_info *infos, int action)
+{
+	int		i;
+
+	i = 0;
+	action = get_action(b);
+	if (b->top <= 2)
+		return ;
+	if (action == 3)
+		sort_top_three(a, b);
+	else if (action == 6)
+		action_six(a, b, infos);
+	else if (action == 13)
+		action_thirteen(a, b, infos);
+	else if (action == 25)
+		action_twentyfive(a, b, infos);
+	else if (action == 50)
+	{
+		set_pivot(b, infos, 50);
+		divide_b(a, b, infos, 50);
+		
+		sort_top_three(a, b);
+		action_six(a, b, infos);
+		action_thirteen(a, b, infos);
+		action_twentyfive(a, b, infos);
+		return ;
+	}
+	b_to_a(a, b, infos, action);
+}
+
+void	a_to_b(t_stack *a, t_stack *b, t_info *infos, int calls_pb)
+{
+	int		i;
+
+	i = a->top;
+	calls_pb = 0;
+	if (a->top <= 2)
+	{
+		if (a->top == 2)
+			sort_three(a);
+		else if(a->list[a->top] > a->list[a->top - 1])
+			sa(a);
+		return ;
+	}
+	set_pivot(a, infos, a->top + 1);
+	while (i >= 0)
+	{
+		if (a->list[a->top] <= infos->pivot)
+		{
+			pb(b, a);
+			calls_pb++;
+		}
+		else
+		{
+			if (is_rest_bigger(a, infos->pivot))
+				break ;
+			ra(a);
+		}
+		i--;
+	}
+	print_stack(*a, *b);
+	a_to_b(a, b, infos, calls_pb);
 }
 
 void	sort(t_stack *a, t_stack *b, t_info *infos)
 {
-	int		i;
-
-	if (is_aligned(a, infos->aligned))
-		return ;
-	if (b->top == -1)
-		divide_a(a, b, infos);
-	if (b->top < 3)
-	{
-		sort_descending(b);
-		i = b->top;
-		while (i >= 0)
-		{
-			pa(a, b);
-			ra(a);
-			i--;
-		}
-	}
-	set_pivot(b, infos, 0);
-	i = b->top;
-	while (i >= 0)
-	{
-		if (b->list[b->top] == infos->pivot)
-			sb(b);
-		if (b->list[b->top] > infos->pivot)
-			pa(a, b);
-		else if (b->list[b->top] < infos->pivot)
-			rb(b);
-		i--;
-	}
-	// print_stack(*a, *b);
-	sort(a, b, infos);
+	a_to_b(a, b, infos, 0);
+	b_to_a(a, b, infos, 3);
 }
+
 
 void	push_swap(t_stack *a, t_stack *b, t_info *infos)
 {
 	if (is_aligned(a, infos->aligned))
 		return ;
 	else
-		sort(a, b, infos);
+	{
+		if (a->top == 2)
+			sort_three(a);
+		else
+			sort(a, b, infos);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 19:53:42 by jna               #+#    #+#             */
-/*   Updated: 2021/07/06 11:35:37 by jna              ###   ########.fr       */
+/*   Updated: 2021/07/07 06:33:43 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,12 @@ void	a_to_b_rra(t_stack *a, t_stack *b, t_info *infos, int size)
 {
 	int		i;
 	int		calls_ra;
+	int		calls_rra;
 
 	i = 0;
 	calls_ra = 0;
-	if (size == 1)
+	calls_rra = 0;
+	if (size <= 1)
 		return ;
 	set_pivot(a, infos, size);
 	while (i < size)
@@ -105,6 +107,7 @@ void	a_to_b_rra(t_stack *a, t_stack *b, t_info *infos, int size)
 		if (a->list[a->top] > infos->pivot)
 		{
 			ra(a);
+			calls_rra++;
 			calls_ra++;
 		}
 		else
@@ -112,7 +115,7 @@ void	a_to_b_rra(t_stack *a, t_stack *b, t_info *infos, int size)
 		i++;
 	}
 	i = 0;
-	while (i < calls_ra)
+	while (i < calls_rra)
 	{
 		rra(a);
 		i++;
@@ -123,6 +126,7 @@ void	a_to_b_rra(t_stack *a, t_stack *b, t_info *infos, int size)
 void	b_to_a(t_stack *a, t_stack *b, t_info *infos)
 {
 	int		i;
+	int		j;
 	int		calls_pa;
 
 	i = 0;
@@ -136,16 +140,65 @@ void	b_to_a(t_stack *a, t_stack *b, t_info *infos)
 	while (i < b->top + 1)
 	{
 		if (b->list[b->top] < infos->pivot)
+		{
 			rb(b);
+			j = b->top;
+		}
 		else
 		{
 			pa(a, b);
 			calls_pa++;
+	printf("calls_pa is %d\n", calls_pa);
 		}
 		i++;
 	}
-	a_to_b_rra(a, b, infos, calls_pa);
+	a_to_b(a, b, infos, calls_pa);
 	b_to_a(a, b, infos);
+}
+
+bool	is_rest_bigger(t_stack *stack, int pivot)
+{
+	int		i;
+
+	i = stack->top;
+	while (i >= 0)
+	{
+		if (stack->list[i] < pivot)
+			return (false);
+		i--;
+	}
+	return (true);
+}
+
+void	sort_rest(t_stack *stack)
+{
+	int		i;
+	int		max;
+
+	i = stack->top;
+	max = stack->top;
+	while (i >= 0)
+	{
+		if (stack->list[max] < stack->list[i])
+			max = i;
+		i--;
+	}
+	if (stack->top == 2)
+	{
+		if (max == 2)
+			ra(stack);
+		if (max == 1)
+			rra(stack);
+		if (stack->list[2] > stack->list[1])
+			sa(stack);
+	}
+	else if (stack->top == 1)
+	{
+		if (stack->list[1] > stack->list[0])
+			sa(stack);
+	}
+	else
+		return ;
 }
 
 void	a_to_b(t_stack *a, t_stack *b, t_info *infos, int size)
@@ -155,14 +208,20 @@ void	a_to_b(t_stack *a, t_stack *b, t_info *infos, int size)
 
 	i = 0;
 	calls_ra = 0;
-	if (size == 1)
+	if (a->top <= 2)
+	{
+		sort_rest(a);
+		return ;
+	}
+	if (size <= 1)
 		return ;
 	set_pivot(a, infos, size);
 	while (i < size)
 	{
 		if (a->list[a->top] > infos->pivot)
 		{
-			ra(a);
+			if (!is_rest_bigger(a, infos->pivot))
+				ra(a);
 			calls_ra++;
 		}
 		else
@@ -184,5 +243,10 @@ void	push_swap(t_stack *a, t_stack *b, t_info *infos)
 	if (is_aligned(a, infos->aligned))
 		return ;
 	else
-		sort(a, b, infos);
+	{
+		if (a->top <= 2)
+			sort_rest(a);
+		else
+			sort(a, b, infos);
+	}
 }
