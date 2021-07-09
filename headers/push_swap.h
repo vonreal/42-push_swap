@@ -48,6 +48,7 @@ void			*allocate(int size, int length);
 t_stack			init_stack(int size);
 void			push_swap(t_stack *a, t_stack *b, t_info *infos);
 void			sort_three(t_stack *stack);
+void			sort_five(t_stack *a, t_stack *b);
 
 /*
 **		temp/

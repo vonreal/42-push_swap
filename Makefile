@@ -19,6 +19,7 @@ SRCS	=	./codes/main.c							\
 			./codes/push_value.c					\
 			./codes/push_swap.c						\
 			./codes/sort_three.c					\
+			./codes/sort_five.c						\
 			./codes/utils/get_sign.c				\
 			./codes/utils/count_elements.c			\
 			./codes/utils/free_and_null.c			\

@@ -511,7 +511,6 @@ void	sort(t_stack *a, t_stack *b, t_info *infos)
 	}
 }
 
-
 void	push_swap(t_stack *a, t_stack *b, t_info *infos)
 {
 	if (is_aligned(a, infos->aligned))
@@ -520,6 +519,8 @@ void	push_swap(t_stack *a, t_stack *b, t_info *infos)
 	{
 		if (a->top == 2)
 			sort_three(a);
+		else if (a->top == 4)
+			sort_five(a, b);
 		else
 			sort(a, b, infos);
 	}
