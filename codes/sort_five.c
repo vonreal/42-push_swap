@@ -77,6 +77,23 @@ static void	top_swap(t_stack *stack, int count)
 	}
 }
 
+static void	swap(int count,	t_stack *a)
+{
+	int	mid;
+
+	mid = (int)(a->size / 2);
+	if (count == 0)
+		return ;
+	else if (count == 1)
+		sa(a);
+	else if (count == a->top )
+		ra(a);
+	else if (1 < count && count <= mid)
+		top_swap(a, count);
+	else if (mid < count && count < a->size)
+		bottom_swap(a, count);
+}
+
 void	sort_five(t_stack *a, t_stack *b)
 {
 	int		count;
