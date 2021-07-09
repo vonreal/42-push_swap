@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 13:25:56 by root              #+#    #+#             */
-/*   Updated: 2021/07/07 16:02:09 by jna              ###   ########.fr       */
+/*   Updated: 2021/07/09 18:58:11 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int			main(int argc, char **argv)
 //	print_stack(a, b);
 	// print_datas(datas, &a);
 	push_swap(&a, &b, &infos);
-	print_stack(a, b);
+//	print_stack(a, b);
 
 	free_and_null(&a, &b, &infos);
 	return (0);

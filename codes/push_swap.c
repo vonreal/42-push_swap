@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 19:53:42 by jna               #+#    #+#             */
-/*   Updated: 2021/07/07 15:51:39 by jna              ###   ########.fr       */
+/*   Updated: 2021/07/09 18:58:02 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ bool	is_rest_bigger(t_stack *a, int pivot)
 	i = a->top;
 	while (i >= 0)
 	{
-		if (a->list[i] < pivot)
+		if (a->list[i] <= pivot)
 			return (false);
 		i--;
 	}
@@ -278,6 +278,13 @@ void	action_six(t_stack *a, t_stack *b, t_info *infos)
 	sort_top_three(a, b);
 }
 
+void	action_seven(t_stack *a, t_stack *b, t_info *infos)
+{
+	set_pivot(b, infos, 7);
+	divide_b(a, b, infos, 7);
+	
+}
+
 void	action_thirteen(t_stack *a, t_stack *b, t_info *infos)
 {
 	set_pivot(b, infos, 13);
@@ -296,6 +303,16 @@ void	action_twentyfive(t_stack *a, t_stack *b, t_info *infos)
 {
 	set_pivot(b, infos, 25);
 	divide_b(a, b, infos, 25);
+
+	sort_top_three(a, b);
+	action_six(a, b, infos);
+	action_thirteen(a, b, infos);
+}
+
+void	action_twentyfour(t_stack *a, t_stack *b, t_info *infos)
+{
+	set_pivot(b, infos, 24);
+	divide_b(a, b, infos, 24);
 
 	sort_top_three(a, b);
 	action_six(a, b, infos);
@@ -327,7 +344,6 @@ void	b_to_a(t_stack *a, t_stack *b, t_info *infos, int action)
 		action_six(a, b, infos);
 		action_thirteen(a, b, infos);
 		action_twentyfive(a, b, infos);
-		return ;
 	}
 	b_to_a(a, b, infos, action);
 }
@@ -478,7 +494,6 @@ void	a_to_b(t_stack *a, t_stack *b, t_info *infos, int calls_pb)
 		}
 		i--;
 	}
-	//print_stack(*a, *b);
 	a_to_b(a, b, infos, calls_pb);
 }
 
