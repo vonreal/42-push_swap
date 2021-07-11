@@ -15,15 +15,23 @@ NAME	= push_swap
 CC		= gcc
 
 SRCS	=	./codes/main.c							\
-			./codes/valid_arg.c						\
-			./codes/push_value.c					\
 			./codes/push_swap.c						\
+			./codes/push_value.c					\
+			./codes/valid_arg.c						\
 			./codes/sort_three.c					\
 			./codes/sort_five.c						\
-			./codes/utils/get_sign.c				\
+			./codes/sort_hun.c						\
+			./codes/sort_five_hun.c					\
+			./codes/actions/action_1.c				\
+			./codes/actions/action_2.c				\
+			./codes/actions/action_3.c				\
+			./codes/utils/bubble_sort.c				\
 			./codes/utils/count_elements.c			\
 			./codes/utils/free_and_null.c			\
-			./codes/utils/bubble_sort.c				\
+			./codes/utils/is_aligned.c				\
+			./codes/utils/get_sign.c				\
+			./codes/utils/set_pivot.c				\
+			./codes/utils/sort_top_three.c			\
 			./codes/instructions/swap.c				\
 			./codes/instructions/push.c				\
 			./codes/instructions/rotate.c			\
