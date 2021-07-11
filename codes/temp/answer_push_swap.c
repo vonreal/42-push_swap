@@ -271,47 +271,197 @@ void	divide_b(t_stack *a, t_stack *b, t_info *infos, int size)
 	sort_top_a(a, b, infos, calls_pa);
 }
 
-void    recursive_sort_even(t_stack *a, t_stack *b, int chunk)
+void	action_six(t_stack *a, t_stack *b, t_info *infos)
 {
-    if (chunk == 2)
-        sort_top_three_rest(a, b);
-    else if (chunk == 3)
-        sort_top_three(a, b);
-    else
-        recursive_sort_even(a, b, chunk / 2);
+	set_pivot(b, infos, 6);
+	divide_b(a, b, infos, 6);
+	sort_top_three(a, b);
 }
 
-void    recursive_sort(t_stack *a, t_stack *b, t_info *infos, int chunk)
+void	action_seven(t_stack *a, t_stack *b, t_info *infos)
 {
-    if (chunk == 2)
-        sort_top_three_rest(a, b);
-    else if (chunk == 3)
-        sort_top_three(a, b);
-    else
-    {
-        set_pivot(a, infos, chunk);
-        divide_b(a, b, infos, chunk);
-        if (chunk > 7)
-        {
-            recursive_sort_even(a, b, chunk / 2);
-            if (chunk % 2 == 0)
-            {
-                recursive_sort(a, b, infos, (chunk / 2) / 2);
-                if (chunk > 12)
-                    recursive_sort(a, b, infos, (chunk / 2) / 2 + 1)
-            }
-        }
-        recursive_sort(a, b, infos, chunk - (chunk / 2));
-    }
+	set_pivot(b, infos, 7);
+	divide_b(a, b, infos, 7);
+	
 }
 
-void	b_to_a(t_stack *a, t_stack *b, t_info *infos, int chunk)
+void	action_thirteen(t_stack *a, t_stack *b, t_info *infos)
 {
-    if (b->top == 0)
-        return ;
-    else
-        recursive_sort(a, b, infos, chunk);
-    b_to_a(b->size - (b->top + 1));
+	set_pivot(b, infos, 13);
+	divide_b(a, b, infos, 13);
+	sort_top_three(a, b);
+
+	set_pivot(b, infos, 7);
+	divide_b(a, b, infos, 7);
+
+	set_pivot(b, infos, 4);
+	divide_b(a, b, infos, 4);
+	sort_top_three_rest(a, b);
+}
+
+void	action_twentyfive(t_stack *a, t_stack *b, t_info *infos)
+{
+	set_pivot(b, infos, 25);
+	divide_b(a, b, infos, 25);
+
+	sort_top_three(a, b);
+	action_six(a, b, infos);
+	action_thirteen(a, b, infos);
+}
+
+void	action_twentyfour(t_stack *a, t_stack *b, t_info *infos)
+{
+	set_pivot(b, infos, 24);
+	divide_b(a, b, infos, 24);
+
+	sort_top_three(a, b);
+	action_six(a, b, infos);
+	action_thirteen(a, b, infos);
+}
+
+void	b_to_a(t_stack *a, t_stack *b, t_info *infos, int action)
+{
+	int		i;
+
+	i = 0;
+	action = get_action(b);
+	if (b->top <= 2)
+		return ;
+	if (action == 3)
+		sort_top_three(a, b);
+	else if (action == 6)
+		action_six(a, b, infos);
+	else if (action == 13)
+		action_thirteen(a, b, infos);
+	else if (action == 25)
+		action_twentyfive(a, b, infos);
+	else if (action == 50)
+	{
+		set_pivot(b, infos, 50);
+		divide_b(a, b, infos, 50);
+		
+		sort_top_three(a, b);
+		action_six(a, b, infos);
+		action_thirteen(a, b, infos);
+		action_twentyfive(a, b, infos);
+	}
+	b_to_a(a, b, infos, action);
+}
+
+int	get_action_five_hun(t_stack *b)
+{
+	int		action;
+
+	action = b->size - b->top;
+	return (action);
+}
+
+void	action_four(t_stack *a, t_stack *b, t_info *infos)
+{
+	set_pivot(b, infos, 4);
+	divide_b(a, b, infos, 4);
+	sort_top_three_rest(a, b);
+}
+
+void	action_eight(t_stack *a, t_stack *b, t_info *infos)
+{
+	set_pivot(b, infos, 8);
+	divide_b(a, b, infos, 8);
+
+	sort_top_three_rest(a, b);
+	action_four(a, b, infos);
+}
+
+void	action_sixteen(t_stack *a, t_stack *b, t_info *infos)
+{
+	set_pivot(b, infos, 16);
+	divide_b(a, b, infos, 16);
+
+	sort_top_three_rest(a, b);
+	action_four(a, b, infos);
+	action_eight(a, b, infos);
+}
+
+void	action_thirty_one(t_stack *a, t_stack *b, t_info *infos)
+{
+	set_pivot(b, infos, 31);
+	divide_b(a, b, infos, 31);
+
+	action_four(a, b, infos);
+	action_eight(a, b, infos);
+	action_sixteen(a, b, infos);
+}
+
+void	action_thirty_two(t_stack *a, t_stack *b, t_info *infos)
+{
+	set_pivot(b, infos, 32);
+	divide_b(a, b, infos, 32);
+
+	sort_top_three_rest(a, b);
+	action_four(a, b, infos);
+	action_eight(a, b, infos);
+	action_sixteen(a, b, infos);
+}
+
+void	action_sixty_three(t_stack *a, t_stack *b, t_info *infos)
+{
+	set_pivot(b, infos , 63);
+	divide_b(a, b, infos, 63);
+
+	action_four(a, b, infos);
+	action_eight(a, b, infos);
+	action_sixteen(a, b, infos);
+	action_thirty_two(a, b, infos);
+}
+
+void	action_one_hun_twnety_five(t_stack *a, t_stack *b, t_info *infos)
+{
+	set_pivot(b, infos, 125);
+	divide_b(a, b, infos, 125);
+
+	action_four(a, b, infos);
+	action_eight(a, b, infos);
+	action_sixteen(a, b, infos);
+	action_thirty_one(a, b, infos);
+	action_sixty_three(a, b, infos);
+}
+
+void	action_two_hun_fifty_one(t_stack *a, t_stack *b, t_info *infos)
+{
+	set_pivot(b, infos, 250);
+	divide_b(a, b, infos, 250);
+
+	action_four(a, b, infos);
+	action_eight(a, b, infos);
+	action_sixteen(a, b, infos);
+	action_thirty_one(a, b, infos);
+	action_sixty_three(a, b, infos);
+	action_one_hun_twnety_five(a, b, infos);
+}
+
+void	b_to_a_five_hun(t_stack *a, t_stack *b, t_info *infos, int action)
+{
+	int		i;
+	
+	i = 0;
+	action = get_action_five_hun(b);
+	if (b->top <= 2)
+		return ;
+	if (action == 4)
+		action_four(a, b, infos);
+	else if (action == 8)
+		action_eight(a, b, infos);
+	else if (action == 16)
+		action_sixteen(a, b, infos);
+	else if (action == 32) // 31
+		action_thirty_one(a, b, infos);
+	else if (action == 63)
+		action_sixty_three(a, b, infos);
+	else if (action == 126) // 125
+		action_one_hun_twnety_five(a, b, infos);
+	else if (action == 251) // 250
+		action_two_hun_fifty_one(a, b, infos);
+	b_to_a_five_hun(a, b, infos, action);
 }
 
 void	a_to_b(t_stack *a, t_stack *b, t_info *infos, int calls_pb)
