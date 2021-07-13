@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 13:03:56 by jna               #+#    #+#             */
-/*   Updated: 2021/06/21 15:57:32 by jna              ###   ########.fr       */
+/*   Updated: 2021/07/13 22:09:20 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	swap(t_stack *stack)
 	stack->list[second] = temp;
 }
 
-void		sa(t_stack *a)
+void	sa(t_stack *a)
 {
 	if (count_elements(a) < 2)
 		return ;
@@ -36,7 +36,7 @@ void		sa(t_stack *a)
 	}
 }
 
-void		sb(t_stack *b)
+void	sb(t_stack *b)
 {
 	if (count_elements(b) < 2)
 		return ;
@@ -47,7 +47,7 @@ void		sb(t_stack *b)
 	}
 }
 
-void		ss(t_stack *a, t_stack *b)
+void	ss(t_stack *a, t_stack *b)
 {
 	if (count_elements(a) < 2 && count_elements(b) < 2)
 		return ;

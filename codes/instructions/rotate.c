@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 13:35:50 by jna               #+#    #+#             */
-/*   Updated: 2021/06/21 15:57:41 by jna              ###   ########.fr       */
+/*   Updated: 2021/07/13 22:08:57 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	rotate(t_stack *stack)
 	stack->list[i] = temp;
 }
 
-void		ra(t_stack *a)
+void	ra(t_stack *a)
 {
 	if (count_elements(a) < 2)
 		return ;
@@ -38,7 +38,7 @@ void		ra(t_stack *a)
 	}
 }
 
-void		rb(t_stack *b)
+void	rb(t_stack *b)
 {
 	if (count_elements(b) < 2)
 		return ;
@@ -49,7 +49,7 @@ void		rb(t_stack *b)
 	}
 }
 
-void		rr(t_stack *a, t_stack *b)
+void	rr(t_stack *a, t_stack *b)
 {
 	if (count_elements(a) < 2 && count_elements(b) < 2)
 		return ;

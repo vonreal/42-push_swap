@@ -6,7 +6,7 @@
 /*   By: jna </var/mail/root>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 13:22:38 by jna               #+#    #+#             */
-/*   Updated: 2021/05/29 06:58:56 by jna              ###   ########.fr       */
+/*   Updated: 2021/07/13 22:07:20 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,13 @@ static int	pop(t_stack *stack)
 	return (data);
 }
 
-static void 	push(t_stack *stack, int data)
+static void	push(t_stack *stack, int data)
 {
-	/* First, Never get top data is bigger than size. because one stack is empty.*/
 	stack->top += 1;
 	stack->list[stack->top] = data;
 }
 
-void		pa(t_stack *a, t_stack *b)
+void	pa(t_stack *a, t_stack *b)
 {
 	int	data;
 
@@ -47,10 +46,9 @@ void		pa(t_stack *a, t_stack *b)
 		push(a, data);
 		write(STDOUT_FILENO, "pa\n", 3);
 	}
-
 }
 
-void		pb(t_stack *b, t_stack *a)
+void	pb(t_stack *b, t_stack *a)
 {
 	int	data;
 
