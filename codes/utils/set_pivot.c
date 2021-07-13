@@ -6,13 +6,13 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 22:35:05 by jna               #+#    #+#             */
-/*   Updated: 2021/07/11 22:35:05 by jna              ###   ########.fr       */
+/*   Updated: 2021/07/13 22:13:28 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int		get_idx_aligned(int target, t_info *infos)
+static int	get_idx_aligned(int target, t_info *infos)
 {
 	int		i;
 
@@ -26,7 +26,7 @@ static int		get_idx_aligned(int target, t_info *infos)
 	return (i);
 }
 
-static int		get_max_num_idx(t_stack *stack, t_info *infos, int size)
+static int	get_max_num_idx(t_stack *stack, t_info *infos, int size)
 {
 	int		i;
 	int		max;
@@ -44,7 +44,7 @@ static int		get_max_num_idx(t_stack *stack, t_info *infos, int size)
 	return (max);
 }
 
-static int		get_min_num_idx(t_stack *stack, t_info *infos, int size)
+static int	get_min_num_idx(t_stack *stack, t_info *infos, int size)
 {
 	int		i;
 	int		min;
@@ -62,7 +62,7 @@ static int		get_min_num_idx(t_stack *stack, t_info *infos, int size)
 	return (min);
 }
 
-void	    set_pivot(t_stack *stack, t_info *infos, int size)
+void	set_pivot(t_stack *stack, t_info *infos, int size)
 {
 	int		max;
 	int		min;

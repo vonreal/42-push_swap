@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 22:39:27 by jna               #+#    #+#             */
-/*   Updated: 2021/07/11 22:39:27 by jna              ###   ########.fr       */
+/*   Updated: 2021/07/13 22:14:29 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	sort_top_a(t_stack *a, t_stack *b, t_info *infos, int size)
 {
 	int		i;
 	int		calls_ra;
-	
+
 	i = 0;
 	calls_ra = 0;
 	set_pivot(a, infos, size);

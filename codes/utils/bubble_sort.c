@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 15:26:56 by jna               #+#    #+#             */
-/*   Updated: 2021/06/23 17:37:48 by jna              ###   ########.fr       */
+/*   Updated: 2021/07/13 22:12:04 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	set_value(int *datas, t_stack *stack)
 	}
 }
 
-int			*bubble_sort(t_stack *stack)
+int	*bubble_sort(t_stack *stack)
 {
 	int		*datas;
 	int		temp;
