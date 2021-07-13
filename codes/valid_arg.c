@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 23:16:04 by jna               #+#    #+#             */
-/*   Updated: 2021/05/27 05:20:08 by jna              ###   ########.fr       */
+/*   Updated: 2021/07/13 22:21:08 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static bool	is_integer(char *str)
 	return (true);
 }
 
-void		valid_arg(int argc, char **argv)
+void	valid_arg(int argc, char **argv)
 {
 	int		i;
 

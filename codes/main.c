@@ -6,13 +6,13 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 13:25:56 by root              #+#    #+#             */
-/*   Updated: 2021/07/09 18:58:11 by jna              ###   ########.fr       */
+/*   Updated: 2021/07/13 22:16:48 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		print_stack(t_stack a, t_stack b)
+void	print_stack(t_stack a, t_stack b)
 {
 	int		i;
 
@@ -36,7 +36,7 @@ void		print_stack(t_stack a, t_stack b)
 	printf("a b\n");
 }
 
-void		print_datas(int *datas, t_stack *stack)
+void	print_datas(int *datas, t_stack *stack)
 {
 	int		i;
 
@@ -56,7 +56,7 @@ static void	free_and_null(t_stack *a, t_stack *b, t_info *infos)
 	free(infos->aligned);
 }
 
-int			main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_stack		a;
 	t_stack		b;
@@ -66,12 +66,7 @@ int			main(int argc, char **argv)
 	a = push_value(argc - 1, argv + 1);
 	b = init_stack(argc - 1);
 	infos.aligned = bubble_sort(&a);
-	
-//	print_stack(a, b);
-	// print_datas(datas, &a);
 	push_swap(&a, &b, &infos);
-//	print_stack(a, b);
-
 	free_and_null(&a, &b, &infos);
 	return (0);
 }

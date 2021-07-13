@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 16:17:53 by jna               #+#    #+#             */
-/*   Updated: 2021/06/28 16:19:20 by jna              ###   ########.fr       */
+/*   Updated: 2021/07/13 22:20:43 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	get_big_num_index(t_stack *stack)
 void	sort_three(t_stack *stack)
 {
 	int		idx;
-	
+
 	idx = get_big_num_index(stack);
 	if (idx == stack->top)
 		ra(stack);

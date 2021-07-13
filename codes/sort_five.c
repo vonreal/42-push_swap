@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 04:25:10 by jna               #+#    #+#             */
-/*   Updated: 2021/07/10 04:25:10 by jna              ###   ########.fr       */
+/*   Updated: 2021/07/13 22:19:11 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static void	swap(int count,	t_stack *a)
 		return ;
 	else if (count == 1)
 		sa(a);
-	else if (count == a->top )
+	else if (count == a->top)
 		ra(a);
 	else if (1 < count && count <= mid)
 		top_swap(a, count);

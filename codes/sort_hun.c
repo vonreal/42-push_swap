@@ -6,13 +6,13 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 22:37:22 by jna               #+#    #+#             */
-/*   Updated: 2021/07/11 22:37:22 by jna              ###   ########.fr       */
+/*   Updated: 2021/07/13 22:20:27 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	    get_action(t_stack *b)
+static int	get_action(t_stack *b)
 {
 	if (b->top == 96)
 		return (3);
@@ -26,7 +26,7 @@ static int	    get_action(t_stack *b)
 		return (50);
 }
 
-void		b_to_a(t_stack *a, t_stack *b, t_info *infos, int action)
+void	b_to_a(t_stack *a, t_stack *b, t_info *infos, int action)
 {
 	int		i;
 
@@ -46,7 +46,6 @@ void		b_to_a(t_stack *a, t_stack *b, t_info *infos, int action)
 	{
 		set_pivot(b, infos, 50);
 		divide_b(a, b, infos, 50);
-		
 		sort_top_three(a, b);
 		action_six(a, b, infos);
 		action_thirteen(a, b, infos);

@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 22:29:48 by jna               #+#    #+#             */
-/*   Updated: 2021/07/11 22:29:48 by jna              ###   ########.fr       */
+/*   Updated: 2021/07/13 22:17:54 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	a_to_b(t_stack *a, t_stack *b, t_info *infos, int calls_pb)
 	{
 		if (a->top == 2)
 			sort_three(a);
-		else if(a->list[a->top] > a->list[a->top - 1])
+		else if (a->list[a->top] > a->list[a->top - 1])
 			sa(a);
 		return ;
 	}
