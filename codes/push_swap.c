@@ -12,6 +12,15 @@
 
 #include "push_swap.h"
 
+static void	call_rrb(t_stack *b, int calls_rb)
+{
+	while (calls_rb > 0)
+	{
+		rrb(b)
+		calls_rb--;
+	}
+}
+
 void	divide_b(t_stack *a, t_stack *b, t_info *infos, int size)
 {
 	int		i;
@@ -35,11 +44,6 @@ void	divide_b(t_stack *a, t_stack *b, t_info *infos, int size)
 		}
 		i++;
 	}
-	while (calls_rb > 0)
-	{
-		rrb(b);
-		calls_rb--;
-	}
 	sort_top_a(a, b, infos, calls_pa);
 }
 
@@ -51,10 +55,7 @@ void	a_to_b(t_stack *a, t_stack *b, t_info *infos, int calls_pb)
 	calls_pb = 0;
 	if (a->top <= 2)
 	{
-		if (a->top == 2)
-			sort_three(a);
-		else if (a->list[a->top] > a->list[a->top - 1])
-			sa(a);
+		sort_end(a);
 		return ;
 	}
 	set_pivot(a, infos, a->top + 1);

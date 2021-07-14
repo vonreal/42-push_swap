@@ -32,6 +32,7 @@ SRCS	=	./codes/main.c							\
 			./codes/utils/get_sign.c				\
 			./codes/utils/set_pivot.c				\
 			./codes/utils/sort_top_three.c			\
+			./codes/utils/sort_end.c				\
 			./codes/instructions/swap.c				\
 			./codes/instructions/push.c				\
 			./codes/instructions/rotate.c			\

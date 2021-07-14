@@ -106,5 +106,6 @@ void			sort_top_three_a(t_stack *a, t_stack *b);
 void			sort_top_three_rest(t_stack *a, t_stack *b);
 void			sort_top_three_rest_a(t_stack *a, t_stack *b);
 void			sort_top_a(t_stack *a, t_stack *b, t_info *infos, int size);
+void			sort_end(t_stack *a);
 
 #endif
