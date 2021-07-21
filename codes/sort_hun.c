@@ -42,8 +42,8 @@ void	b_to_a(t_stack *a, t_stack *b, t_info *infos, int action)
 	{
 		set_pivot(b, infos, chunk);
 		divide_b(a, b, infos, chunk);
-		print_stack(*a, infos->chunks);
 	}
+	print_stack(*a, infos->chunks);
 	b_to_a(a, b, infos, 0);
 	// int		i;
 	// 
