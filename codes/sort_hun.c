@@ -38,6 +38,16 @@ void	b_to_a(t_stack *a, t_stack *b, t_info *infos, int action)
 		sort_top_three(a, b);
 		infos->chunks.top--;
 	}
+	if (chunk == 2)
+	{
+		sort_top_three_rest(a, b);
+		infos->chunks.top--;
+	}
+	if (chunk == 1)
+	{
+		pa(a, b);
+		infos->chunks.top--;
+	}
 	else
 	{
 		set_pivot(b, infos, chunk);
