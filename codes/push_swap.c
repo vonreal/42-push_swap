@@ -36,7 +36,6 @@ void	divide_b(t_stack *a, t_stack *b, t_info *infos, int chunk)
 		{
 			pa(a, b);
 			calls_pa++;
-			infos->chunks.list[infos->chunks.top]--;
 		}
 		else
 		{
@@ -46,6 +45,8 @@ void	divide_b(t_stack *a, t_stack *b, t_info *infos, int chunk)
 		i++;
 	}
 	call_rrb(b, calls_rb);
+	infos->chunks.list[infos->chunks.top] -= calls_pa;
+	print_stack(*a, infos->chunks);
 	sort_top_a(a, b, infos, calls_pa);
 }
 
