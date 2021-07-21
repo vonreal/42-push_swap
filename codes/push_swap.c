@@ -16,7 +16,7 @@ static void	call_rrb(t_stack *b, int calls_rb)
 {
 	while (calls_rb > 0)
 	{
-		rrb(b)
+		rrb(b);
 		calls_rb--;
 	}
 }
