@@ -33,6 +33,7 @@ typedef struct	s_info
 	int		midian;
 	int		pivot;
 	int		*aligned;
+	t_stack	chunks;
 }				t_info;
 
 

@@ -49,10 +49,11 @@ void	print_datas(int *datas, t_stack *stack)
 	printf("\n");
 }
 
-static void	free_and_null(t_stack *a, t_stack *b, t_info *infos)
+static void	free_and_null(t_stack *a, t_stack *b, t_stack *chunks, t_info *infos)
 {
 	free_and_null_stack(a);
 	free_and_null_stack(b);
+	free_and_null_stack(chunks);
 	free(infos->aligned);
 }
 
@@ -65,6 +66,7 @@ int	main(int argc, char **argv)
 	valid_arg(argc, argv);
 	a = push_value(argc - 1, argv + 1);
 	b = init_stack(argc - 1);
+	infos.chunks = init_stack(argc - 1);
 	infos.aligned = bubble_sort(&a);
 	push_swap(&a, &b, &infos);
 	free_and_null(&a, &b, &infos);

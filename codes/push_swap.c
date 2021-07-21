@@ -75,6 +75,8 @@ void	a_to_b(t_stack *a, t_stack *b, t_info *infos, int calls_pb)
 		}
 		i--;
 	}
+	infos->chunks.top++;
+	infos->chunks.list[infos->chunks.top] = calls_pb;
 	a_to_b(a, b, infos, calls_pb);
 }
 
@@ -83,7 +85,8 @@ void	sort(t_stack *a, t_stack *b, t_info *infos)
 	if (a->size == 100)
 	{
 		a_to_b(a, b, infos, 0);
-		b_to_a(a, b, infos, 3);
+		print_stack(*a, *infos->chunks);
+		//b_to_a(a, b, infos, 3);
 	}
 	else if (a->size == 500)
 	{
