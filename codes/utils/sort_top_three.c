@@ -101,9 +101,11 @@ void	sort_top_a(t_stack *a, t_stack *b, t_info *infos, int size)
 {
 	int		i;
 	int		calls_ra;
+	int		calls_pb;
 
 	i = 0;
 	calls_ra = 0;
+	calls_pb = 0;
 	set_pivot(a, infos, size);
 	if (size <= 3)
 	{
@@ -116,7 +118,10 @@ void	sort_top_a(t_stack *a, t_stack *b, t_info *infos, int size)
 	while (i < size)
 	{
 		if (a->list[a->top] <= infos->pivot)
+		{
 			pb(b, a);
+			calls_pb++;
+		}
 		else
 		{
 			ra(a);
@@ -129,6 +134,11 @@ void	sort_top_a(t_stack *a, t_stack *b, t_info *infos, int size)
 	{
 		rra(a);
 		calls_ra--;
+	}
+	if (calls_pb != 0)
+	{
+		infos->chunks.top++;
+		infos->chunks.list[infos->chunks.top] = calls_pb;
 	}
 	sort_top_a(a, b, infos, i);
 }

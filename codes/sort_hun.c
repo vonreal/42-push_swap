@@ -28,28 +28,42 @@ static int	get_action(t_stack *b)
 
 void	b_to_a(t_stack *a, t_stack *b, t_info *infos, int action)
 {
-	int		i;
+	int		chunk;
 
-	i = 0;
-	action = get_action(b);
-	if (b->top <= 2)
-		return ;
-	if (action == 3)
-		sort_top_three(a, b);
-	else if (action == 6)
-		action_six(a, b, infos);
-	else if (action == 13)
-		action_thirteen(a, b, infos);
-	else if (action == 25)
-		action_twentyfive(a, b, infos);
-	else if (action == 50)
+	chunk = infos->chunks.list[infos->chunks.top];
+	if (chunk == 3)
 	{
-		set_pivot(b, infos, 50);
-		divide_b(a, b, infos, 50);
 		sort_top_three(a, b);
-		action_six(a, b, infos);
-		action_thirteen(a, b, infos);
-		action_twentyfive(a, b, infos);
+		infos->chunks.top--;
 	}
-	b_to_a(a, b, infos, action);
+	else
+	{
+		divide_b(a, b, infos, chunk);
+		print_stack(*a, infos->chunks);
+
+	}
+	// int		i;
+	// 
+	// i = 0;
+	// action = get_action(b);
+	// if (b->top <= 2)
+	// 	return ;
+	// if (action == 3)
+	// 	sort_top_three(a, b);
+	// else if (action == 6)
+	// 	action_six(a, b, infos);
+	// else if (action == 13)
+	// 	action_thirteen(a, b, infos);
+	// else if (action == 25)
+	// 	action_twentyfive(a, b, infos);
+	// else if (action == 50)
+	// {
+	// 	set_pivot(b, infos, 50);
+	// 	divide_b(a, b, infos, 50);
+	// 	sort_top_three(a, b);
+	// 	action_six(a, b, infos);
+	// 	action_thirteen(a, b, infos);
+	// 	action_twentyfive(a, b, infos);
+	// }
+	// b_to_a(a, b, infos, action);
 }

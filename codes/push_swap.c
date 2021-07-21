@@ -21,7 +21,7 @@ static void	call_rrb(t_stack *b, int calls_rb)
 	}
 }
 
-void	divide_b(t_stack *a, t_stack *b, t_info *infos, int size)
+void	divide_b(t_stack *a, t_stack *b, t_info *infos, int chunk)
 {
 	int		i;
 	int		calls_rb;
@@ -30,12 +30,13 @@ void	divide_b(t_stack *a, t_stack *b, t_info *infos, int size)
 	i = 0;
 	calls_pa = 0;
 	calls_rb = 0;
-	while (i < size)
+	while (i < chunk)
 	{
 		if (b->list[b->top] > infos->pivot)
 		{
 			pa(a, b);
 			calls_pa++;
+			infos->chunks.list[infos->chunks.top]--;
 		}
 		else
 		{
@@ -86,7 +87,7 @@ void	sort(t_stack *a, t_stack *b, t_info *infos)
 	{
 		a_to_b(a, b, infos, 0);
 		print_stack(*a, infos->chunks);
-		//b_to_a(a, b, infos, 3);
+		b_to_a(a, b, infos, 3);
 	}
 	else if (a->size == 500)
 	{
