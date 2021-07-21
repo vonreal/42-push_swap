@@ -53,7 +53,7 @@ static void	free_and_null(t_stack *a, t_stack *b, t_info *infos)
 {
 	free_and_null_stack(a);
 	free_and_null_stack(b);
-	free_and_null_stack(infos->chunks);
+	free_and_null_stack(&infos->chunks);
 	free(infos->aligned);
 }
 
