@@ -43,6 +43,7 @@ void			sort_a_stack(t_stack *a, t_stack *b, t_info *infos, int cnt);
 **		codes/
 */
 void			valid_arg(int argc, char **argv);
+bool			is_integer(char *str, int *size);
 t_stack			push_value(int size, char **src);
 void			*allocate(int size, int length);
 t_stack			init_stack(int size);
@@ -97,6 +98,7 @@ void			rrr(t_stack *a, t_stack *b);
 int				get_sign(char c);
 int				count_elements(t_stack *stack);
 void			free_and_null_stack(t_stack *stack);
+void			free_and_nulls(char **str);
 int				*bubble_sort(t_stack *stack);
 bool			is_aligned(t_stack *stack, int *aligned);
 bool			is_rest_bigger(t_stack *a, int pivot);

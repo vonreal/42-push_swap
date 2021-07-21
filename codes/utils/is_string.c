@@ -1,34 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_and_null.c                                    :+:      :+:    :+:   */
+/*   is_string.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/22 17:09:39 by jna               #+#    #+#             */
-/*   Updated: 2021/06/22 17:12:32 by jna              ###   ########.fr       */
+/*   Created: 2021/07/21 13:56:00 by jna               #+#    #+#             */
+/*   Updated: 2021/07/21 13:56:00 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_and_null_stack(t_stack *stack)
+bool	is_blank(char str)
 {
-	free(stack->list);
-	stack->list = NULL;
+	if (str == ' ')
+		return (true);
+	return (false);
 }
 
-void	free_and_nulls(char **str)
+bool	is_string(char *str, int *size)
 {
 	int		i;
+	char	**divide;
+	bool	temp;
 
 	i = 0;
 	while (str[i])
 	{
-		free(str[i]);
-		str[i] = NULL;
-		i++;
+		if (temp = is_blank(str[i]))
+			break ;
 	}
-	free(str);
-	str = NULL;
+	if (temp == true)
+	{
+		divide = ft_split(str, ' ');
+		i = 0;
+		while (divide[i])
+		{
+			if (!is_integer(divide[i]))
+				return (false);
+			size++;
+			i++;
+		}
+		free_and_nulls(divide);
+		return (true);
+	}
+	return (false);
 }

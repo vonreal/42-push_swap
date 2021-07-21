@@ -22,6 +22,7 @@ SRCS	=	./codes/main.c							\
 			./codes/sort_five.c						\
 			./codes/sort_hun.c						\
 			./codes/sort_five_hun.c					\
+			./codes/is_string.c						\
 			./codes/actions/action_1.c				\
 			./codes/actions/action_2.c				\
 			./codes/actions/action_3.c				\
