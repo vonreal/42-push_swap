@@ -71,7 +71,7 @@ static bool	is_range(int min, int max, long long num)
 	return (false);
 }
 
-bool	is_integer(char *str)
+static bool	is_integer(char *str)
 {
 	long long	num;
 	int			sign;
@@ -98,26 +98,18 @@ bool	is_integer(char *str)
 	return (true);
 }
 
-int		valid_arg(int argc, char **argv)
+void	valid_arg(int argc, char **argv)
 {
 	int		i;
-	int		size;
-
-	size = argc - 1;
 	i = 1;
 	if (argc == 1)
 		return ;
 	while (i < argc)
 	{
 		if (!is_integer(argv[i]))
-		{
-			size--;
-			if (!is_string(argv[i], &size))
-				error_msg();
-		}
+			error_msg();
 		if (!is_duplicate(argv[i], argv))
 			error_msg();
 		i++;
 	}
-	return (size);
 }

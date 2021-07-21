@@ -17,18 +17,3 @@ void	free_and_null_stack(t_stack *stack)
 	free(stack->list);
 	stack->list = NULL;
 }
-
-void	free_and_nulls(char **str)
-{
-	int		i;
-
-	i = 0;
-	while (str[i])
-	{
-		free(str[i]);
-		str[i] = NULL;
-		i++;
-	}
-	free(str);
-	str = NULL;
-}

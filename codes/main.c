@@ -61,10 +61,9 @@ int	main(int argc, char **argv)
 	t_stack		a;
 	t_stack		b;
 	t_info		infos;
-	int			size;
 	
-	size = valid_arg(argc, argv);
-	a = push_value(size, argv + 1);
+	valid_arg(argc, argv);
+	a = push_value(argc - 1, argv + 1);
 	b = init_stack(argc - 1);
 	infos.aligned = bubble_sort(&a);
 	push_swap(&a, &b, &infos);
