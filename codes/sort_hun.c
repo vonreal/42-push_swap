@@ -31,8 +31,13 @@ void	b_to_a(t_stack *a, t_stack *b, t_info *infos, int action)
 	int		chunk;
 
 	chunk = infos->chunks.list[infos->chunks.top];
-	if (chunk == 13)
+	if (infos->chunks.top < 0)
 		return ;
+	if (chunk == 2)
+	{
+		sort_top_three_rest(a, b);
+		infos->chunks.top--;
+	}
 	if (chunk == 3)
 	{
 		sort_top_three(a, b);

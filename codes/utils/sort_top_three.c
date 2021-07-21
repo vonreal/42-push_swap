@@ -137,7 +137,6 @@ void	sort_top_a(t_stack *a, t_stack *b, t_info *infos, int size)
 	}
 	if (calls_pb != 0)
 	{
-		printf("infos->chunks.top: %d, calls_pb: %d\n", infos->chunks.top, calls_pb);
 		infos->chunks.top++;
 		infos->chunks.list[infos->chunks.top] = calls_pb;
 	}
