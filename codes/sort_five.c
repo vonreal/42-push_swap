@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 04:25:10 by jna               #+#    #+#             */
-/*   Updated: 2021/07/13 22:19:11 by jna              ###   ########.fr       */
+/*   Updated: 2021/07/21 08:12:12 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,14 +98,14 @@ void	sort_five(t_stack *a, t_stack *b)
 {
 	int		count;
 
-	count = a->size - 3;
+	count = 2;
 	while (count > 0)
 	{
 		pb(b, a);
 		count--;
 	}
 	sort_three(a);
-	count = a->size - 3;
+	count = 2;
 	while (count > 0)
 	{
 		pa(a, b);
