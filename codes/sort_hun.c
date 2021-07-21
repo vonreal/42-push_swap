@@ -30,17 +30,21 @@ void	b_to_a(t_stack *a, t_stack *b, t_info *infos, int action)
 {
 	int		chunk;
 
+	if (infos->chunks.top < 0)
+		return ;
 	chunk = infos->chunks.list[infos->chunks.top];
-	// if (chunk == 3)
-	// {
+	if (chunk == 3)
+	{
 		sort_top_three(a, b);
 		infos->chunks.top--;
-	// }
-	// else
-	// {
+	}
+	else
+	{
+		set_pivot(b, infos, chunk);
 		divide_b(a, b, infos, chunk);
 		print_stack(*a, infos->chunks);
-	// }
+	}
+	b_to_a(a, b, infos, 0);
 	// int		i;
 	// 
 	// i = 0;
