@@ -44,6 +44,7 @@ void	divide_b(t_stack *a, t_stack *b, t_info *infos, int size)
 		}
 		i++;
 	}
+	calls_rrb(b, calls_rb);
 	sort_top_a(a, b, infos, calls_pa);
 }
 
