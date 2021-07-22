@@ -69,7 +69,6 @@ int	main(int argc, char **argv)
 	infos.chunks = init_stack(argc - 1);
 	infos.aligned = bubble_sort(&a);
 	push_swap(&a, &b, &infos);
-	print_stack(a, b);
 	free_and_null(&a, &b, &infos);
 	return (0);
 }
