@@ -46,7 +46,6 @@ void	divide_b(t_stack *a, t_stack *b, t_info *infos, int chunk)
 	}
 	call_rrb(b, calls_rb);
 	infos->chunks.list[infos->chunks.top] -= calls_pa;
-	printf("calls_pa : %d\n", calls_pa);
 	sort_top_a(a, b, infos, calls_pa);
 }
 
