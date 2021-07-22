@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 13:35:26 by root              #+#    #+#             */
-/*   Updated: 2021/07/11 14:03:27 by jna              ###   ########.fr       */
+/*   Updated: 2021/07/22 10:09:17 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,6 @@ void			b_to_a(t_stack *a, t_stack *b, t_info *infos, int action);
 void			b_to_a_five_hun(t_stack *a, t_stack *b, t_info *infos, int action);
 void			divide_b(t_stack *a, t_stack *b, t_info *infos, int size);
 
-
-/*
-**		actions/
-*/
-void			action_six(t_stack *a, t_stack *b, t_info *infos);
-void			action_seven(t_stack *a, t_stack *b, t_info *infos);
-void			action_thirteen(t_stack *a, t_stack *b, t_info *infos);
-void			action_twentyfive(t_stack *a, t_stack *b, t_info *infos);
-void			action_twentyfour(t_stack *a, t_stack *b, t_info *infos);
-void			action_four(t_stack *a, t_stack *b, t_info *infos);
-void			action_eight(t_stack *a, t_stack *b, t_info *infos);
-void			action_sixteen(t_stack *a, t_stack *b, t_info *infos);
-void			action_thirty_one(t_stack *a, t_stack *b, t_info *infos);
-void			action_thirty_two(t_stack *a, t_stack *b, t_info *infos);
-void			action_sixty_three(t_stack *a, t_stack *b, t_info *infos);
-void			action_one_hun_twnety_five(t_stack *a, t_stack *b, t_info *infos);
-void			action_two_hun_fifty_one(t_stack *a, t_stack *b, t_info *infos);
 
 /*
 **		codes/error/

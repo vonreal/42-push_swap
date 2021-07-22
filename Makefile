@@ -6,7 +6,7 @@
 #    By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/26 13:18:14 by root              #+#    #+#              #
-#    Updated: 2021/07/07 09:02:54 by jna              ###   ########.fr        #
+#    Updated: 2021/07/22 10:10:34 by jna              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,6 @@ SRCS	=	./codes/main.c							\
 			./codes/sort_three.c					\
 			./codes/sort_five.c						\
 			./codes/sort_hun.c						\
-			./codes/sort_five_hun.c					\
-			./codes/actions/action_1.c				\
-			./codes/actions/action_2.c				\
-			./codes/actions/action_3.c				\
 			./codes/utils/bubble_sort.c				\
 			./codes/utils/count_elements.c			\
 			./codes/utils/free_and_null.c			\
