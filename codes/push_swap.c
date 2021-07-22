@@ -6,7 +6,7 @@
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 22:29:48 by jna               #+#    #+#             */
-/*   Updated: 2021/07/13 22:17:54 by jna              ###   ########.fr       */
+/*   Updated: 2021/07/22 09:58:49 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,17 +82,9 @@ void	a_to_b(t_stack *a, t_stack *b, t_info *infos, int calls_pb)
 }
 
 void	sort(t_stack *a, t_stack *b, t_info *infos)
-{
-	if (a->size == 100)
-	{
-		a_to_b(a, b, infos, 0);
-		b_to_a(a, b, infos, 3);
-	}
-	else if (a->size == 500)
-	{
-		a_to_b(a, b, infos, 0);
-		b_to_a_five_hun(a, b, infos, 4);
-	}
+{	
+	a_to_b(a, b, infos, 0);
+	b_to_a(a, b, infos, 3);
 }
 
 void	push_swap(t_stack *a, t_stack *b, t_info *infos)
