@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end_of_use.c                                       :+:      :+:    :+:   */
+/*   set_value.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/24 22:41:58 by jna               #+#    #+#             */
-/*   Updated: 2021/07/24 22:44:18 by jna              ###   ########.fr       */
+/*   Created: 2021/07/25 01:47:10 by jna               #+#    #+#             */
+/*   Updated: 2021/07/25 01:47:10 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_and_null(char *str, char **strs)
+void	set_value(t_stack *b, t_stack *a, t_info *infos)
 {
-	int		i;
+	int	size;
+	int	i;
 
-	if (str != NULL)
+	infos->ascending = bubble_sort(b);
+	i = 0;
+	size = b->size- 1;
+	while (i < b->size)
 	{
-		free(str);
-		str = NULL;
+		a->list[i] = b->list[size];
+		i++;
+		size--;
 	}
-	if (strs != NULL)
-	{
-		i = 0;
-		while (strs[i])
-		{
-			free(strs[i]);
-			strs[i] = NULL;
-			i++;
-		}
-		free(strs);
-	}
+	a->top = a->size - 1;
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/24 21:11:36 by jna               #+#    #+#             */
-/*   Updated: 2021/07/25 01:11:54 by jna              ###   ########.fr       */
+/*   Created: 2021/07/22 21:06:53 by jna               #+#    #+#             */
+/*   Updated: 2021/07/22 21:06:53 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <limits.h>
-# include "../libft/libft.h"
-
-# include <stdio.h>
 
 typedef struct	s_stack
 {
@@ -37,24 +34,11 @@ typedef struct	s_info
 }				t_info;
 
 /*
-**		codes/
+**      codes/
 */
-bool		is_valid(int *len, char **target);
-void		free_and_null(char *str, char **strs);
-void		free_and_null_stack(t_stack *stack);
-t_stack 	init_stack(int size);
-t_info	    init_info(int stack_size);
+bool	    is_valid(int *argc, char **target);
+void        push_swap();
 void	    init(t_stack *a, t_stack *b, t_info *infos);
 
-/*
-**		utils
-*/
-bool		is_num(char *str);
-bool		is_range(int min, int max, long long num);
-long long	get_num(char *str);
-bool		error_msg(void);
-void		*allocate(int size, int length);
-
-
-
+void	    free_and_null(char *str, char **strs);
 #endif

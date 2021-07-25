@@ -5,46 +5,29 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/07/24 21:06:03 by jna               #+#    #+#              #
-#    Updated: 2021/07/25 01:12:25 by jna              ###   ########.fr        #
+#    Created: 2021/07/24 20:34:06 by jna               #+#    #+#              #
+#    Updated: 2021/07/24 20:34:06 by jna              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	push_swap
 
-CC		=	gcc
-
-FLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address
+CC		=	gcc -Wall -Wextra -Werror
 
 SRCS	=	./codes/main.c \
-			./codes/validation.c \
-			./codes/push_swap.c \
-			./codes/init.c \
-			./codes/sort.c \
-			./codes/cleaning.c \
-			./codes/utils/is_integer.c \
-			./codes/utils/allocate.c \
-			./codes/utils/error_msg.c \
-			./codes/utils/bubble_sort.c \
+			./codes/vaildation.c \
 
-INCLUDE	=	./headers
-
-SUBDIR	=	./libft
+INCLUDE =	./headers
 
 all:		$(NAME)
 
-$(NAME):	Libft
-			$(CC) $(SRCS) libft/*.c -I $(INCLUDE) -o $(NAME)
-
-Libft:
-			cd $(SUBDIR); $(MAKE)
+$(NAME):
+			$(CC) $(SRCS) $(INCLUDE) -o $(NAME)
 
 clean:
-			cd $(SUBDIR); $(MAKE) clean
 			rm -f *.o
 
 fclean:		clean
-			cd $(SUBDIR); $(MAKE) fclean
 			rm -f $(NAME)
 
 re:			fclean all

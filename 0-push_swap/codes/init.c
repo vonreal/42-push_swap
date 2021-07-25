@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/24 22:33:09 by jna               #+#    #+#             */
-/*   Updated: 2021/07/24 22:33:55 by jna              ###   ########.fr       */
+/*   Created: 2021/07/22 21:06:22 by jna               #+#    #+#             */
+/*   Updated: 2021/07/22 21:06:22 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_swap(t_stack *b)
+static t_stack init_stack()
 {
-	t_stack	a;
-	t_info	infos;
+	t_stack	stack;
 
-	init(b, &a, &infos);
-	set_value(b, &a, &infos);
-	sort(&a, b, &infos);
-	cleaning(b, &a, &infos);
+	return (stack);
 }
 
-int	main(int argc, char **argv)
+static t_info init_info()
 {
-	t_stack a;
+	t_info infos;
 
-	a = init_stack(0);
-	if (is_valid(&argc, argv, &a))
-		push_swap(&a);
-	return (0);
+	return (infos);
+}
+
+void	init(t_stack *a, t_stack *b, t_info *infos)
+{
+	a = init_stack();
+	b = init_stack();
+	infos = init_info();
 }

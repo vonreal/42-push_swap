@@ -5,26 +5,41 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/24 22:34:06 by jna               #+#    #+#             */
-/*   Updated: 2021/07/25 01:12:46 by jna              ###   ########.fr       */
+/*   Created: 2021/07/22 21:41:11 by jna               #+#    #+#             */
+/*   Updated: 2021/07/22 21:41:11 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static bool	is_integer(char *target, int *size)
+/*	Document requirment: <Handle errors>
+**		1. Program quit errors.
+**			[1] Segmentation fault, bus error, double free etc
+**		2. Display "Error\n" on the standard error.
+**			[1] Aren't integers
+**			[2] Bigger than an integer
+**			[3] Duplicates.
+*/
+
+// 테스트 필요
+static bool	is_integer(char *target)
 {
 	char		**targets;
+	long long	num;
+	int			sign;
 	int			i;
 
-	if (ft_strchr(target, ' '))
+	if (has_blank(target))
 	{
 		targets = ft_split(target, ' ');
 		i = 0;
 		while (targets[i])
 		{
-			if (!is_integer(targets[i], size))
+			if (!is_integer(targets[i]))
+			{
+				free_and_null(NULL, targets);
 				return (false);
+			}
 			i++;
 		}
 		free_and_null(NULL, targets);
@@ -35,55 +50,22 @@ static bool	is_integer(char *target, int *size)
 			return (false);
 		if (!is_range(INT_MIN, INT_MAX, get_num(target)))
 			return (false);
-		*size += 1;
 	}
 	return (true);
 }
 
-void	make_one_line(int *line, char *src, int *size)
+static bool is_duplicate(int *len, char *target)
 {
-	char	**srcs;
-	int		i;
-
-	if (ft_strchr(src, ' '))
-	{
-		srcs = ft_split(src, ' ');
-		i = 0;
-		while (srcs[i])
-		{
-			make_one_line(line, srcs[i], size);
-			i++;
-		}
-		free_and_null(NULL, srcs);
-	}
-	else
-	{
-		line[*size] = (int)get_num(src);
-		*size += 1;
-	}
+	return (true);
 }
 
-static bool	is_duplicate(int *len, int size)
+static bool	error_msg(void)
 {
-	int		i;
-	int		j;
-
-	i = 0;
-	while (i < size)
-	{
-		j = i + 1;
-		while (j < size)
-		{
-			if (len[i] == len[j])
-				return (true);
-			j++;
-		}
-		i++;
-	}
+	write(STDERR_FILENO, "Error\n", 6);
 	return (false);
 }
 
-bool	is_valid(int *len, char **target, t_stack *a)
+bool	is_valid(int *len, char **target)
 {
 	int		i;
 
@@ -92,19 +74,11 @@ bool	is_valid(int *len, char **target, t_stack *a)
 		return (false);
 	while (target[i])
 	{
-		if (!is_integer(target[i], &a->size))
+		if (!is_integer(target[i]))
+			return (error_msg());
+		if (!is_duplicate(len, target[i]))
 			return (error_msg());
 		i++;
 	}
-	a->list = (int *)allocate(sizeof(int), a->size);
-	i = 1;
-	a->size = 0;
-	while (target[i])
-	{
-		make_one_line(a->list, target[i], &a->size);
-		i++;
-	}
-	if (is_duplicate(a->list, a->size))
-		return (error_msg());
 	return (true);
 }

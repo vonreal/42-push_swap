@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   end_of_use.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/24 22:33:09 by jna               #+#    #+#             */
-/*   Updated: 2021/07/24 22:33:55 by jna              ###   ########.fr       */
+/*   Created: 2021/07/22 21:59:48 by jna               #+#    #+#             */
+/*   Updated: 2021/07/22 21:59:48 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_swap(t_stack *b)
+void	free_and_null(char *str, char **strs)
 {
-	t_stack	a;
-	t_info	infos;
+	int		i;
 
-	init(b, &a, &infos);
-	set_value(b, &a, &infos);
-	sort(&a, b, &infos);
-	cleaning(b, &a, &infos);
-}
-
-int	main(int argc, char **argv)
-{
-	t_stack a;
-
-	a = init_stack(0);
-	if (is_valid(&argc, argv, &a))
-		push_swap(&a);
-	return (0);
+	if (str != NULL)
+	{
+		free(str);
+		str = NULL;
+	}
+	if (strs != NULL)
+	{
+		i = 0;
+		while (strs[i])
+		{
+			free(strs[i]);
+			strs[i] = NULL;
+			i++;
+		}
+		free(strs);
+	}
 }

@@ -1,34 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cleaning.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/24 22:33:09 by jna               #+#    #+#             */
-/*   Updated: 2021/07/24 22:33:55 by jna              ###   ########.fr       */
+/*   Created: 2021/07/25 01:50:40 by jna               #+#    #+#             */
+/*   Updated: 2021/07/25 01:50:40 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_swap(t_stack *b)
+void	free_and_null(char *str, char **strs)
 {
-	t_stack	a;
-	t_info	infos;
+	int		i;
 
-	init(b, &a, &infos);
-	set_value(b, &a, &infos);
-	sort(&a, b, &infos);
-	cleaning(b, &a, &infos);
+	if (str != NULL)
+	{
+		free(str);
+		str = NULL;
+	}
+	if (strs != NULL)
+	{
+		i = 0;
+		while (strs[i])
+		{
+			free(strs[i]);
+			strs[i] = NULL;
+			i++;
+		}
+		free(strs);
+	}
 }
 
-int	main(int argc, char **argv)
+void	free_and_null_stack(t_stack *stack)
 {
-	t_stack a;
-
-	a = init_stack(0);
-	if (is_valid(&argc, argv, &a))
-		push_swap(&a);
-	return (0);
+	free(stack->list);
+	stack->list = NULL;
 }
