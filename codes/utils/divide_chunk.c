@@ -1,50 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bubble_sort.c                                      :+:      :+:    :+:   */
+/*   divide_chunk.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/25 15:40:20 by jna               #+#    #+#             */
-/*   Updated: 2021/07/25 15:51:31 by jna              ###   ########.fr       */
+/*   Created: 2021/07/25 18:02:04 by jna               #+#    #+#             */
+/*   Updated: 2021/07/25 18:18:49 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	push_value(int *dst, t_stack *src)
+static void	call_rrb(t_stack *b, int calls_rb)
 {
-	int		i;
-
-	i = 0;
-	while (i < src->size)
+	while (calls_rb > 0)
 	{
-		dst[i] = src->list[i];
-		i++;
+		rrb(b);
+		calls_rb--;
 	}
 }
 
-void	bubble_sort(int *dst, t_stack *src)
+void	divide_chunk(t_stack *a, t_stack *b, t_info *infos, int chunk)
 {
 	int		i;
-	int		j;
-	int		temp;
+	int		calls_rb;
+	int		calls_pa;
 
-	push_value(dst, src);
 	i = 0;
-	while (i < src->size - 1)
+	calls_rb = 0;
+	calls_pa = 0;
+	while (i < chunk)
 	{
-		j = 0;
-		while (j < src->size - 1)
+		if (b->list[b->top] > infos->median)
 		{
-			if (dst[j] > dst[j + 1])
-			{
-				temp = dst[j];
-				dst[j] = dst[j + 1];
-				dst[j + 1] = temp;
-			}
-			j++;
+			pa(a, b);
+			calls_pa++;
+		}
+		else
+		{
+			rb(b);
+			calls_rb++;
 		}
 		i++;
 	}
+	call_rrb(b, calls_rb);
+	infos->chunks.list[infos->chunks.top] -= calls_pa;
+	sort_top_a(a, b, infos, calls_pa);
 }

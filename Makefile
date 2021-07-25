@@ -5,54 +5,56 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/05/26 13:18:14 by root              #+#    #+#              #
-#    Updated: 2021/07/22 10:10:34 by jna              ###   ########.fr        #
+#    Created: 2021/07/24 21:06:03 by jna               #+#    #+#              #
+#    Updated: 2021/07/25 12:52:35 by jna              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= push_swap
+NAME	=	push_swap
 
-CC		= gcc
+CC		=	gcc
 
-SRCS	=	./codes/main.c							\
-			./codes/push_swap.c						\
-			./codes/push_value.c					\
-			./codes/valid_arg.c						\
-			./codes/sort_three.c					\
-			./codes/sort_five.c						\
-			./codes/sort_hun.c						\
-			./codes/utils/bubble_sort.c				\
-			./codes/utils/count_elements.c			\
-			./codes/utils/free_and_null.c			\
-			./codes/utils/is_aligned.c				\
-			./codes/utils/get_sign.c				\
-			./codes/utils/set_pivot.c				\
-			./codes/utils/sort_top_three.c			\
-			./codes/utils/sort_end.c				\
-			./codes/instructions/swap.c				\
-			./codes/instructions/push.c				\
-			./codes/instructions/rotate.c			\
-			./codes/instructions/reverse_rotate.c	\
-			./codes/error/error_msg.c				\
+FLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address
+
+SRCS	=	./codes/main.c \
+			./codes/validation.c \
+			./codes/init.c \
+			./codes/set_value.c \
+			./codes/sort.c \
+			./codes/end_of_use.c \
+			./codes/instructions/push.c \
+			./codes/instructions/reverse_rotate.c \
+			./codes/instructions/rotate.c \
+			./codes/instructions/swap.c \
+			./codes/utils/is_integer.c \
+			./codes/utils/allocate.c \
+			./codes/utils/error_msg.c \
+			./codes/utils/bubble_sort.c \
+			./codes/utils/count_elements.c \
+			./codes/utils/sort_unit.c \
+			./codes/utils/sort_unit_2.c \
+			./codes/utils/divide_chunk.c \
+			./codes/utils/sort_top_a.c \
+			./codes/utils/set_median.c 
 
 INCLUDE	=	./headers
 
-SUBDIR	= ./libft
+SUBDIR	=	./libft
 
-all:	$(NAME)
+all:		$(NAME)
 
-$(NAME): Libft
-		$(CC) $(SRCS) libft/*.c -I $(INCLUDE) -o $(NAME)
-	
+$(NAME):	Libft
+			$(CC) $(FLAGS) $(SRCS) libft/*.c -I $(INCLUDE) -o $(NAME)
+
 Libft:
-	cd $(SUBDIR); $(MAKE)
+			cd $(SUBDIR); $(MAKE)
 
 clean:
-	cd $(SUBDIR); $(MAKE) clean
-	rm -f *.o
+			cd $(SUBDIR); $(MAKE) clean
+			rm -f *.o
 
-fclean:	clean
-	cd $(SUBDIR); $(MAKE) fclean
-	rm -f $(NAME)
+fclean:		clean
+			cd $(SUBDIR); $(MAKE) fclean
+			rm -f $(NAME)
 
-re:	fclean all
+re:			fclean all

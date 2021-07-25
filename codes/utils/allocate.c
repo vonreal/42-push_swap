@@ -1,41 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   order.c                                            :+:      :+:    :+:   */
+/*   allocate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/24 14:56:22 by jna               #+#    #+#             */
-/*   Updated: 2021/06/24 14:56:31 by jna              ###   ########.fr       */
+/*   Created: 2021/07/25 01:11:00 by jna               #+#    #+#             */
+/*   Updated: 2021/07/25 13:37:20 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-bool	is_aligned(t_stack *stack)
+void	*allocate(int size, int length)
 {
-	int		i;
+	void	*temp;
 
-	i = stack->top;
-	while (i > 0)
-	{
-		if (!(stack->list[i] < stack->list[i - 1]))
-			return (false);
-		i--;
-	}
-	return (true);
-}
-
-bool	is_descending_order(t_stack *stack)
-{
-	int		i;
-
-	i = stack->top;
-	while (i > 0)
-	{
-		if (!(stack->list[i] > stack->list[i - 1]))
-			return (false);
-		i--;
-	}
-	return (true);
+	temp = ft_calloc(size, length);
+	if (temp == NULL)
+		exit(0);
+	return (temp);
 }

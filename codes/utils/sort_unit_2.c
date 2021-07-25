@@ -1,44 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_aligned.c                                       :+:      :+:    :+:   */
+/*   sort_unit_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jna <jna@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/11 22:31:47 by jna               #+#    #+#             */
-/*   Updated: 2021/07/11 22:31:47 by jna              ###   ########.fr       */
+/*   Created: 2021/07/25 17:58:47 by jna               #+#    #+#             */
+/*   Updated: 2021/07/25 23:35:11 by jna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-bool	is_rest_bigger(t_stack *a, int pivot)
+int	get_max(t_stack *b)
 {
 	int		i;
+	int		max;
 
-	i = a->top;
-	while (i >= 0)
+	i = b->top - 1;
+	max = b->top;
+	while (i >= b->top - 2)
 	{
-		if (a->list[i] <= pivot)
-			return (false);
+		if (b->list[max] < b->list[i])
+			max = i;
 		i--;
 	}
-	return (true);
+	return (max);
 }
 
-bool	is_aligned(t_stack *stack, int *aligned)
+int	call_ra(t_stack *a)
 {
-	int		i;
-	int		j;
+	ra(a);
+	return (1);
+}
 
-	i = stack->top;
-	j = 0;
-	while (i >= 0)
+int	call_pb(t_stack *a, t_stack *b)
+{
+	pb(b, a);
+	return (1);
+}
+
+void	call_rra_a(t_stack *a, int calls_ra)
+{
+	while (calls_ra > 0)
 	{
-		if (!(stack->list[i] == aligned[j]))
-			return (false);
-		i--;
-		j++;
+		rra(a);
+		calls_ra--;
 	}
-	return (true);
+}
+
+void	sort_top_three_b(t_stack *a, t_stack *b)
+{
+	rb(b);
+	rb(b);
+	pa(a, b);
+	rrb(b);
+	rrb(b);
 }
